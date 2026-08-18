@@ -826,56 +826,38 @@
 			/* ═══════════════════════════════════════════
 			CINE METABÓLICA — PORTAL CINEMATOGRÁFICO
 			═══════════════════════════════════════════ */
-			@keyframes cineBeam {
-				0%, 100% { opacity: 0.55; transform: translateX(-50%) scaleY(1); }
-				50% { opacity: 0.9; transform: translateX(-50%) scaleY(1.08); }
+			
+			/*
+			PALETA OFICIAL MÉDICO EXPONENCIAL / EMS:
+			#2D3766 (Azul Noturno) | #258091 / #0094da (Ciano EMS) | #20FFFF (Neon Ciano)
+			*/
+			@keyframes cineBeamGlow {
+				0%, 100% { opacity: 0.5; transform: translateX(-50%) scaleY(1); }
+				50% { opacity: 0.85; transform: translateX(-50%) scaleY(1.06); }
 			}
 			
-			@keyframes cineFloat {
-				0%, 100% { transform: translateY(0); }
-				50% { transform: translateY(-8px); }
-			}
-			
-			@keyframes insightIn {
-				from { opacity: 0; transform: translateY(20px) scale(0.96); filter: blur(6px); }
-				to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-			}
-			
-			@keyframes episodeIn {
-				from { opacity: 0; transform: translateX(40px); }
-				to { opacity: 1; transform: translateX(0); }
-			}
-			
-			@keyframes nameGlow {
-				0%, 100% { text-shadow: 0 0 20px rgba(0, 148, 218, 0); }
-				50% { text-shadow: 0 0 28px rgba(0, 148, 218, 0.35); }
+			@keyframes pulseCyanAura {
+				0%, 100% { opacity: 0.4; transform: scale(1); }
+				50% { opacity: 0.8; transform: scale(1.15); }
 			}
 			
 			.cine-stage {
 				position: relative;
-				padding: 0;
+				padding: 80px 0 100px;
 				background: #020617;
 				overflow: hidden;
 				color: #f8fafc;
+				font-family: 'Montserrat', sans-serif;
 			}
 			
-			.cine-portal {
-				position: relative;
-				min-height: 100vh;
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				padding: 48px 5% 36px;
-				overflow: hidden;
-			}
-			
+			/* ILUMINAÇÃO DE FUNDO INTEGRALMENTE EM CIANO EMS (SEM VERMELHO) */
 			.cine-portal-bg {
 				position: absolute;
 				inset: 0;
 				background:
-				radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 148, 218, 0.22) 0%, transparent 55%),
-				radial-gradient(ellipse 40% 40% at 20% 30%, rgba(180, 30, 50, 0.12) 0%, transparent 50%),
-				radial-gradient(ellipse 40% 40% at 80% 30%, rgba(0, 80, 160, 0.18) 0%, transparent 50%),
+				radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 148, 218, 0.22) 0%, transparent 60%),
+				radial-gradient(ellipse 50% 40% at 20% 30%, rgba(37, 128, 145, 0.15) 0%, transparent 55%),
+				radial-gradient(ellipse 50% 40% at 80% 30%, rgba(45, 55, 102, 0.25) 0%, transparent 55%),
 				#020617;
 				z-index: 0;
 			}
@@ -884,183 +866,28 @@
 				position: absolute;
 				bottom: 0;
 				left: 50%;
-				width: min(90vw, 900px);
+				width: min(90vw, 950px);
 				height: 55%;
 				transform: translateX(-50%);
-				background: linear-gradient(to top,
-				rgba(0, 148, 218, 0.45) 0%,
-				rgba(0, 148, 218, 0.12) 35%,
-				transparent 75%);
-				filter: blur(40px);
+				background: linear-gradient(to top, rgba(0, 148, 218, 0.4) 0%, rgba(32, 255, 255, 0.08) 40%, transparent 80%);
+				filter: blur(45px);
 				pointer-events: none;
 				z-index: 1;
-				animation: cineBeam 5s ease-in-out infinite;
+				animation: cineBeamGlow 5s ease-in-out infinite;
 			}
 			
-			.cine-beam::before {
-				content: '';
-				position: absolute;
-				bottom: 0;
-				left: 50%;
-				transform: translateX(-50%);
-				width: 60%;
-				height: 4px;
-				background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.8), transparent);
-				box-shadow: 0 0 40px 8px rgba(0, 148, 218, 0.5);
-				border-radius: 50%;
-			}
-			
-			.cine-duo {
-				position: absolute;
-				inset: 0;
-				z-index: 2;
-				display: flex;
-				align-items: flex-end;
-				justify-content: center;
-				pointer-events: none;
-			}
-			
-			.cine-duo img {
-				width: min(1100px, 118%);
-				max-height: 92vh;
-				object-fit: contain;
-				object-position: center bottom;
-				filter: drop-shadow(0 0 60px rgba(0, 148, 218, 0.15));
-				user-select: none;
-				-webkit-user-drag: none;
-				transition: filter 0.6s ease, opacity 0.6s ease;
-			}
-			
-			.cine-portal.is-tassiane .cine-duo img {
-				filter: drop-shadow(-40px 0 80px rgba(200, 40, 60, 0.25)) brightness(1.05);
-			}
-			
-			.cine-portal.is-paula .cine-duo img {
-				filter: drop-shadow(40px 0 80px rgba(0, 148, 218, 0.35)) brightness(1.05);
-			}
-			
-			/* ZONAS CLICÁVEIS ESQ / DIR */
-			.cine-hotzone {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				width: 48%;
-				z-index: 5;
-				cursor: pointer;
-				border: none;
-				background: transparent;
-				padding: 0;
-				outline: none;
-			}
-			
-			.cine-hotzone--left { left: 0; }
-			.cine-hotzone--right { right: 0; }
-			
-			.cine-hotzone::after {
-				content: '';
-				position: absolute;
-				inset: 0;
-				opacity: 0;
-				transition: opacity 0.5s ease;
-				pointer-events: none;
-			}
-			
-			.cine-hotzone--left::after {
-				background: linear-gradient(90deg, rgba(180, 30, 50, 0.18) 0%, transparent 70%);
-			}
-			
-			.cine-hotzone--right::after {
-				background: linear-gradient(270deg, rgba(0, 148, 218, 0.22) 0%, transparent 70%);
-			}
-			
-			.cine-hotzone:hover::after,
-			.cine-portal.is-tassiane .cine-hotzone--left::after,
-			.cine-portal.is-paula .cine-hotzone--right::after {
-				opacity: 1;
-			}
-			
-			/* NOMES FLUTUANTES */
-			.cine-nameplate {
-				position: absolute;
-				z-index: 6;
-				pointer-events: none;
-				transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-			}
-			
-			.cine-nameplate--left {
-				left: 6%;
-				bottom: 28%;
-				text-align: left;
-			}
-			
-			.cine-nameplate--right {
-				right: 6%;
-				bottom: 28%;
-				text-align: right;
-			}
-			
-			.cine-nameplate .role {
-				display: block;
-				font-size: 10px;
-				font-weight: 800;
-				letter-spacing: 3px;
-				text-transform: uppercase;
-				color: rgba(255, 255, 255, 0.45);
-				margin-bottom: 8px;
-			}
-			
-			.cine-nameplate h3 {
-				font-size: clamp(22px, 3.2vw, 36px);
-				font-weight: 900;
-				letter-spacing: -1px;
-				line-height: 1.05;
-				color: #fff;
-				margin-bottom: 6px;
-			}
-			
-			.cine-nameplate .trail-label {
-				font-size: 13px;
-				font-weight: 600;
-				color: var(--ems-cyan);
-			}
-			
-			.cine-nameplate--left .trail-label { color: #f87171; }
-			
-			.cine-portal.is-tassiane .cine-nameplate--left {
-				transform: translateY(-12px) scale(1.05);
-			}
-			
-			.cine-portal.is-tassiane .cine-nameplate--left h3 {
-				animation: nameGlow 2.5s ease-in-out infinite;
-				color: #fff;
-			}
-			
-			.cine-portal.is-tassiane .cine-nameplate--right {
-				opacity: 0.25;
-				transform: scale(0.95);
-			}
-			
-			.cine-portal.is-paula .cine-nameplate--right {
-				transform: translateY(-12px) scale(1.05);
-			}
-			
-			.cine-portal.is-paula .cine-nameplate--right h3 {
-				animation: nameGlow 2.5s ease-in-out infinite;
-			}
-			
-			.cine-portal.is-paula .cine-nameplate--left {
-				opacity: 0.25;
-				transform: scale(0.95);
-			}
-			
-			/* HEADER SOBRE A CENA */
-			.cine-topbar {
+			.cine-container-netflix {
+				max-width: 1240px;
+				margin: 0 auto;
+				padding: 0 4%;
 				position: relative;
-				z-index: 8;
+				z-index: 5;
+			}
+			
+			/* INTRODUÇÃO E HEADER DA SEÇÃO */
+			.cine-topbar {
 				text-align: center;
-				margin-bottom: auto;
-				padding-top: 24px;
-				pointer-events: none;
+				margin-bottom: 60px;
 			}
 			
 			.cine-topbar .eyebrow {
@@ -1069,144 +896,277 @@
 				font-weight: 800;
 				letter-spacing: 3px;
 				text-transform: uppercase;
-				color: var(--ems-cyan);
-				margin-bottom: 10px;
+				color: #20FFFF;
+				text-shadow: 0 0 10px rgba(32, 255, 255, 0.5);
+				margin-bottom: 8px;
 			}
 			
 			.cine-topbar h2 {
-				font-size: clamp(32px, 5vw, 52px);
+				font-size: clamp(32px, 5vw, 50px);
 				font-weight: 900;
 				letter-spacing: -1.5px;
-				line-height: 1;
-				color: #fff;
-				margin-bottom: 10px;
+				line-height: 1.05;
+				color: #ffffff;
+				margin-bottom: 12px;
 			}
 			
 			.cine-topbar p {
 				font-size: 14px;
-				color: rgba(248, 250, 252, 0.55);
-				max-width: 420px;
+				color: rgba(248, 250, 252, 0.65);
+				max-width: 540px;
 				margin: 0 auto;
+				line-height: 1.6;
 			}
 			
-			.cine-hint {
-				position: absolute;
-				bottom: 42%;
-				left: 50%;
-				transform: translateX(-50%);
-				z-index: 7;
-				font-size: 11px;
-				font-weight: 700;
-				letter-spacing: 2px;
-				text-transform: uppercase;
-				color: rgba(255, 255, 255, 0.4);
-				pointer-events: none;
-				transition: opacity 0.4s ease;
-				white-space: nowrap;
-			}
-			
-			.cine-portal.is-tassiane .cine-hint,
-			.cine-portal.is-paula .cine-hint {
-				opacity: 0;
-			}
-			
-			/* PAINEL DE CONTEÚDO QUE SOBE */
-			.cine-deck {
-				position: relative;
-				z-index: 10;
-				max-width: 1100px;
-				width: 100%;
-				margin: 0 auto;
-				margin-top: 20px;
-				opacity: 0;
-				transform: translateY(40px);
-				pointer-events: none;
-				transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-				max-height: 0;
-				overflow: hidden;
-			}
-			
-			.cine-portal.is-tassiane .cine-deck,
-			.cine-portal.is-paula .cine-deck {
-				opacity: 1;
-				transform: translateY(0);
-				pointer-events: auto;
-				max-height: 480px;
-			}
-			
-			.cine-deck-panel {
-				display: none;
-				padding: 28px 0 8px;
-			}
-			
-			.cine-deck-panel.is-active {
-				display: block;
-			}
-			
-			.cine-insights {
+			/* TÍTULOS DOS BLOCOS */
+			.cine-block-title {
+				margin: 60px 0 24px;
+				padding-bottom: 12px;
+				border-bottom: 1px solid rgba(0, 148, 218, 0.25);
 				display: flex;
-				flex-wrap: wrap;
-				gap: 10px;
-				margin-bottom: 22px;
-				justify-content: center;
+				align-items: center;
+				gap: 14px;
 			}
 			
-			.cine-insight {
-				padding: 10px 18px;
-				background: rgba(255, 255, 255, 0.06);
-				border: 1px solid rgba(255, 255, 255, 0.12);
-				backdrop-filter: blur(12px);
+			.cine-block-title h3 {
+				font-size: 26px;
+				font-weight: 900;
+				color: #ffffff;
+				letter-spacing: -0.8px;
+			}
+			
+			.cine-block-title .block-pill {
+				font-size: 10px;
+				font-weight: 800;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				background: linear-gradient(90deg, #0094da 0%, #2D3766 100%);
+				color: #ffffff;
+				padding: 4px 16px;
+				border-radius: 50px;
+				box-shadow: 0 0 15px rgba(0, 148, 218, 0.35);
+			}
+			
+			/* CABEÇALHO DA SEÇÃO DE VÍDEO COM SPEAKER MAIOR */
+			.cine-section-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin: 36px 0 16px;
+				position: relative;
+			}
+			
+			.cine-section-title {
+				font-size: 19px;
+				font-weight: 800;
+				color: #ffffff;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			
+			.cine-section-title::before {
+				content: '';
+				width: 4px;
+				height: 20px;
+				background: #0094da;
+				border-radius: 2px;
+				box-shadow: 0 0 12px #20FFFF;
+			}
+			
+			/* SPEAKERS MAIORES SEM CAIXAS / MOLDURAS */
+			.speaker-avatar-wrapper {
+				position: relative;
+				display: flex;
+				align-items: center;
+				gap: 14px;
+				cursor: pointer;
+				z-index: 20;
+			}
+			
+			.speaker-glow-aura {
+				position: absolute;
+				bottom: -8px;
+				left: 36px;
+				transform: translateX(-50%);
+				width: 65px;
+				height: 24px;
+				background: radial-gradient(ellipse, rgba(32, 255, 255, 0.85) 0%, rgba(0, 148, 218, 0.5) 50%, transparent 80%);
+				filter: blur(12px);
+				pointer-events: none;
+				animation: pulseCyanAura 3.5s ease-in-out infinite;
+			}
+			
+			/* AMPLIAÇÃO DAS FOTOS DOS SPEAKERS */
+			.speaker-cutout-img {
+				width: 72px;
+				height: 72px;
+				border-radius: 50%;
+				object-fit: cover;
+				object-position: top;
+				position: relative;
+				z-index: 5;
+				border: 2px solid rgba(32, 255, 255, 0.6);
+				box-shadow: 0 0 20px rgba(0, 148, 218, 0.4);
+				transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+			}
+			
+			.speaker-avatar-wrapper:hover .speaker-cutout-img {
+				transform: scale(1.1);
+				border-color: #20FFFF;
+				box-shadow: 0 0 25px rgba(32, 255, 255, 0.7);
+			}
+			
+			.speaker-info-text {
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.speaker-info-text .role {
+				font-size: 9px;
+				font-weight: 800;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				color: #20FFFF;
+			}
+			
+			.speaker-info-text .name {
+				font-size: 14px;
+				font-weight: 800;
+				color: #ffffff;
+			}
+			
+			/* LEQUE SUAVE E CLEAN COM BULLETS FLUTUANTES */
+			.speaker-lek-orbit {
+				position: absolute;
+				right: 100%;
+				top: 50%;
+				transform: translateY(-50%);
+				pointer-events: none;
+				opacity: 0;
+				visibility: hidden;
+				transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+				white-space: nowrap;
+				z-index: 30;
+			}
+			
+			.speaker-avatar-wrapper:hover .speaker-lek-orbit {
+				opacity: 1;
+				visibility: visible;
+				pointer-events: auto;
+			}
+			
+			.lek-bullet {
+				position: absolute;
+				background: rgba(2, 6, 23, 0.88);
+				backdrop-filter: blur(16px);
+				border: 1px solid rgba(0, 148, 218, 0.35);
+				padding: 6px 16px;
 				border-radius: 50px;
 				font-size: 11px;
 				font-weight: 700;
-				letter-spacing: 0.4px;
-				color: #e2e8f0;
-				animation: insightIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-				animation-delay: var(--delay);
-			}
-			
-			.cine-portal.is-tassiane .cine-insight {
-				border-color: rgba(248, 113, 113, 0.3);
-			}
-			
-			.cine-portal.is-paula .cine-insight {
-				border-color: rgba(0, 148, 218, 0.35);
-			}
-			
-			.cine-episodes {
+				color: #f8fafc;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 148, 218, 0.2);
 				display: flex;
-				gap: 16px;
-				overflow-x: auto;
-				padding: 4px 2px 16px;
-				scrollbar-width: none;
-				-webkit-overflow-scrolling: touch;
+				align-items: center;
+				gap: 8px;
+				transform: translate(var(--tx), var(--ty)) scale(0.9);
+				transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 			}
 			
-			.cine-episodes::-webkit-scrollbar { display: none; }
+			.speaker-avatar-wrapper:hover .lek-bullet {
+				transform: translate(var(--tx), var(--ty)) scale(1);
+			}
 			
+			.lek-bullet::before {
+				content: '';
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: #20FFFF;
+				box-shadow: 0 0 8px #20FFFF;
+			}
+			
+			/* Distribuição mais espaçada e harmoniosa dos Bullets no Leque */
+			.lek-bullet:nth-child(1) { --tx: -24px; --ty: -46px; }
+			.lek-bullet:nth-child(2) { --tx: -48px; --ty: 0px; }
+			.lek-bullet:nth-child(3) { --tx: -24px; --ty: 46px; }
+			
+			/* TRILHA NETFLIX ESTILO "TOP 10" */
+			.cine-track-container {
+				position: relative;
+				margin-bottom: 24px;
+			}
+			
+			.cine-track-netflix {
+				display: flex;
+				gap: 18px;
+				overflow-x: auto;
+				scroll-behavior: smooth;
+				padding: 10px 4px 20px;
+				scrollbar-width: none;
+			}
+			
+			.cine-track-netflix::-webkit-scrollbar { display: none; }
+			
+			/* CARD DE EPISÓDIO */
 			.cine-episode {
-				flex: 0 0 auto;
-				width: min(300px, 78vw);
+				flex: 0 0 min(290px, 75vw);
 				position: relative;
 				text-decoration: none;
 				color: inherit;
-				animation: episodeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-				animation-delay: var(--delay);
+				transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			/* CAPA DO VÍDEO NO CARD */
+.cine-episode-visual {
+    position: relative;
+    overflow: hidden;
+}
+
+.cine-episode-visual img.ep-thumb {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Fica no fundo */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Garante que o gradiente, número do ep e ícone de play fiquem POR CIMA da foto */
+.cine-episode-visual .ep-glow { z-index: 2; position: relative; }
+.cine-episode-visual::before { z-index: 3; }
+.cine-episode-play { z-index: 4; }
+
+/* Zoom da capa no hover */
+.cine-episode:hover .cine-episode-visual img.ep-thumb {
+    transform: scale(1.08);
+}
+			
+			.cine-episode:hover {
+				transform: translateY(-8px) scale(1.02);
 			}
 			
 			.cine-episode-visual {
 				position: relative;
-				height: 160px;
-				border-radius: 4px 4px 0 0;
+				height: 165px;
+				border-radius: 8px;
 				overflow: hidden;
 				background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				transition: border-color 0.3s ease;
+			}
+			
+			.cine-episode:hover .cine-episode-visual {
+				border-color: rgba(0, 148, 218, 0.6);
 			}
 			
 			.cine-episode-visual::before {
 				content: attr(data-ep);
 				position: absolute;
-				left: 16px;
-				bottom: 12px;
+				left: 14px;
+				bottom: 8px;
 				font-size: 48px;
 				font-weight: 900;
 				letter-spacing: -2px;
@@ -1224,31 +1184,25 @@
 				transition: height 0.4s ease;
 			}
 			
-			.cine-portal.is-tassiane .cine-episode-visual .ep-glow {
-				background: linear-gradient(to top, rgba(200, 40, 60, 0.4), transparent);
-			}
-			
-			.cine-episode:hover .cine-episode-visual .ep-glow {
-				height: 100%;
-			}
+			.cine-episode:hover .cine-episode-visual .ep-glow { height: 100%; }
 			
 			.cine-episode-play {
 				position: absolute;
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%) scale(0.85);
-				width: 52px;
-				height: 52px;
+				width: 50px;
+				height: 50px;
 				border-radius: 50%;
 				background: rgba(255, 255, 255, 0.95);
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				color: var(--ems-blue-dark);
+				color: #2D3766;
 				z-index: 5;
 				opacity: 0;
 				transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 			}
 			
 			.cine-episode:hover .cine-episode-play {
@@ -1256,28 +1210,22 @@
 				transform: translate(-50%, -50%) scale(1);
 			}
 			
-			.cine-episode-meta {
-				padding: 16px 4px 4px;
-			}
+			.cine-episode-meta { padding: 14px 4px 4px; }
 			
 			.cine-episode-meta .ep-time {
 				font-size: 10px;
 				font-weight: 800;
 				letter-spacing: 1.5px;
 				text-transform: uppercase;
-				color: var(--ems-cyan);
+				color: #0094da;
 				margin-bottom: 6px;
 				display: block;
-			}
-			
-			.cine-portal.is-tassiane .cine-episode-meta .ep-time {
-				color: #f87171;
 			}
 			
 			.cine-episode-meta h4 {
 				font-size: 15px;
 				font-weight: 800;
-				color: #fff;
+				color: #ffffff;
 				line-height: 1.35;
 				margin-bottom: 6px;
 			}
@@ -1285,126 +1233,21 @@
 			.cine-episode-meta p {
 				font-size: 12px;
 				line-height: 1.5;
-				color: rgba(226, 232, 240, 0.55);
+				color: rgba(226, 232, 240, 0.6);
 			}
 			
-			.cine-close {
-				display: none;
-				margin: 8px auto 0;
-				background: none;
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				color: rgba(255, 255, 255, 0.6);
-				font-size: 10px;
-				font-weight: 700;
-				letter-spacing: 1.5px;
-				text-transform: uppercase;
-				padding: 8px 20px;
-				border-radius: 50px;
-				cursor: pointer;
-				transition: all 0.3s ease;
-			}
-			
-			.cine-portal.is-tassiane .cine-close,
-			.cine-portal.is-paula .cine-close {
-				display: block;
-			}
-			
-			.cine-close:hover {
-				border-color: #fff;
-				color: #fff;
-			}
-			
-			.cine-portal {
-				min-height: auto;
-				padding: 40px 4% 28px;
-			}
-			
-			.cine-duo img {
-				max-height: 48vh;
-				width: 140%;
-			}
-			
-			.cine-nameplate--left {
-				left: 4%;
-				bottom: auto;
-				top: 38%;
-			}
-			
-			.cine-nameplate--right {
-				right: 4%;
-				bottom: auto;
-				top: 38%;
-			}
-			
-			.cine-nameplate h3 {
-				font-size: 16px;
-			}
-			
-			.cine-hint {
-				bottom: auto;
-				top: 58%;
-				font-size: 9px;
-			}
-			
-			.cine-portal.is-tassiane .cine-deck,
-			.cine-portal.is-paula .cine-deck {
-				max-height: 560px;
-			}
-			
-			.cine-stage .cine-deck {
-				opacity: 1 !important;
-				transform: translateY(0) !important;
-				pointer-events: auto !important;
-				max-height: 600px !important;
-				margin-top: 20px;
-			}
-			
-			/* Interatividade dos Insights funcionando como Botões de Especialidade */
-			.cine-insights .cine-insight {
-				cursor: pointer;
-				user-select: none;
-				transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-			}
-			
-			.cine-insights .cine-insight:hover {
-				transform: translateY(-3px) scale(1.05);
-				color: #ffffff;
-			}
-			
-			/* Estilos e Cores Intercaladas (Azul / Vermelho) para as Abas de Especialidades */
-			.cine-insight.is-spec-active[data-theme="red"] {
-				background: rgba(239, 68, 68, 0.25) !important;
-				border-color: #f87171 !important;
-				color: #ffffff !important;
-				box-shadow: 0 0 20px rgba(248, 113, 113, 0.4);
-			}
-			
-			.cine-insight.is-spec-active[data-theme="blue"] {
-				background: rgba(0, 148, 218, 0.25) !important;
-				border-color: var(--ems-cyan) !important;
-				color: #ffffff !important;
-				box-shadow: 0 0 20px rgba(0, 148, 218, 0.4);
-			}
-			
-			/* Setas estilo Streaming para o carrossel dos cards */
-			.cine-episodes-wrapper {
-				position: relative;
-				display: flex;
-				align-items: center;
-				width: 100%;
-			}
-			
-			.cine-arrow-btn {
+			/* SETAS DE NAVEGAÇÃO */
+			.cine-arrow-nav {
 				position: absolute;
-				top: 38%;
+				top: 42%;
 				transform: translateY(-50%);
-				z-index: 20;
+				z-index: 25;
 				width: 42px;
 				height: 42px;
 				border-radius: 50%;
 				background: rgba(2, 6, 23, 0.85);
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				color: #fff;
+				border: 1px solid rgba(0, 148, 218, 0.35);
+				color: #ffffff;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -1413,34 +1256,21 @@
 				backdrop-filter: blur(8px);
 			}
 			
-			.cine-arrow-btn:hover {
-				background: var(--ems-cyan);
-				border-color: var(--ems-cyan);
-				box-shadow: 0 0 15px rgba(0, 148, 218, 0.5);
+			.cine-arrow-nav:hover {
+				background: #0094da;
+				border-color: #20FFFF;
+				box-shadow: 0 0 20px rgba(0, 148, 218, 0.6);
 			}
 			
-			.cine-arrow-btn.theme-red:hover {
-				background: #ef4444;
-				border-color: #f87171;
-				box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
-			}
+			.cine-arrow-left { left: -18px; }
+			.cine-arrow-right { right: -18px; }
 			
-			.cine-arrow-left { left: -15px; }
-			.cine-arrow-right { right: -15px; }
-			
-			/* Estilização Dinâmica dos Cards conforme a cor do lado (Red/Blue) */
-			.cine-episode.theme-red .ep-glow {
-				background: linear-gradient(to top, rgba(200, 40, 60, 0.45), transparent) !important;
-			}
-			.cine-episode.theme-red .ep-time {
-				color: #f87171 !important;
-			}
-			
-			.cine-episode.theme-blue .ep-glow {
-				background: linear-gradient(to top, rgba(0, 148, 218, 0.45), transparent) !important;
-			}
-			.cine-episode.theme-blue .ep-time {
-				color: var(--ems-cyan) !important;
+			@media (max-width: 900px) {
+				.cine-section-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+				.speaker-lek-orbit { right: auto; left: 0; top: 125%; transform: none; }
+				.lek-bullet:nth-child(1) { --tx: 0px; --ty: 0px; }
+				.lek-bullet:nth-child(2) { --tx: 0px; --ty: 34px; }
+				.lek-bullet:nth-child(3) { --tx: 0px; --ty: 68px; }
 			}
 			
 			/* ====================================espepaço paciente======================================== */
@@ -2209,67 +2039,25 @@
 			</div>
 		</section>
 
-		<section id="cine-metabolica" class="cine-stage">
-			<div class="cine-portal" id="cinePortal">
-				<div class="cine-portal-bg"></div>
-				<div class="cine-beam"></div>
+		<!-- ═══════════════════════════════════════════
+     CINE METABÓLICA — ESTRUTURA DINÂMICA VIA JS
+═══════════════════════════════════════════ -->
+<section id="cine-metabolica" class="cine-stage">
+    <div class="cine-portal-bg"></div>
+    <div class="cine-beam"></div>
 
-				<!-- Duo de Imagem e Iluminação Bicolor (Vermelho à esquerda / Azul à direita) -->
-				<div class="cine-duo">
-					<!-- <img src="image 17.png" alt="Cine Metabólica Speakers"> -->
-				</div>
+    <div class="cine-container-netflix">
+        <!-- Intro Header -->
+        <header class="cine-topbar">
+            <span class="eyebrow">Cine Metabólica</span>
+            <h2>Análogos do GLP-1 na Prática</h2>
+            <p>Como tratar seu paciente no consultório. Ampliando o alcance do tratamento para multiespecialidades.</p>
+        </header>
 
-				<!-- Nomes Flutuantes do Seu Design Original -->
-				<div class="cine-nameplate cine-nameplate--left">
-					<!-- <span class="role">Prática Clínica</span>
-                <h3>Condutas e<br>Casos Reais</h3>
-                <span class="trail-label" style="color: #f87171;">GLP-1 Multiespecialidades</span> -->
-				</div>
-
-				<div class="cine-nameplate cine-nameplate--right">
-					<!-- <span class="role">Referência Médica</span>
-                <h3>Análogos do<br>GLP-1</h3>
-                <span class="trail-label">Manejo no Consultório</span> -->
-				</div>
-
-				<!-- Topbar com Copy Solicitada -->
-				<div class="cine-topbar">
-					<span class="eyebrow">Cine Metabólica</span>
-					<h2>Análogos do GLP-1 na Prática</h2>
-					<p>Como tratar seu paciente no consultório. Ampliando o alcance do tratamento para multiespecialidades.</p>
-				</div>
-
-				<!-- Deck com Conteúdo Já Exposto na Tela -->
-				<div class="cine-deck" id="cineDeck">
-					<div class="cine-deck-panel is-active">
-
-						<!-- Insights Utilizados Como Navegação de Especialidades Intercalando Cores -->
-						<div class="cine-insights">
-							<span class="cine-insight is-spec-active" data-theme="red" style="--delay:0.05s" onclick="switchSpecialty('pediatria', this)">Pediatra</span>
-							<span class="cine-insight" data-theme="blue" style="--delay:0.12s" onclick="switchSpecialty('psiquiatria', this)">Psiquiatra</span>
-							<span class="cine-insight" data-theme="red" style="--delay:0.18s" onclick="switchSpecialty('cardiologia', this)">Cardiologia</span>
-							<span class="cine-insight" data-theme="blue" style="--delay:0.24s" onclick="switchSpecialty('ortopedia', this)">Ortopedia</span>
-							<span class="cine-insight" data-theme="red" style="--delay:0.30s" onclick="switchSpecialty('ginecologia', this)">Ginecologia</span>
-						</div>
-
-						<!-- Trilhas dos Conteúdos com Setas Estilo Netflix -->
-						<div class="cine-episodes-wrapper">
-							<button class="cine-arrow-btn cine-arrow-left" id="cineArrowPrev" onclick="scrollCineTrack(-300)" aria-label="Anterior">
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-							</button>
-
-							<div class="cine-episodes" id="cineEpisodesTrack">
-								<!-- Conteúdos renderizados via JavaScript -->
-							</div>
-
-							<button class="cine-arrow-btn cine-arrow-right" id="cineArrowNext" onclick="scrollCineTrack(300)" aria-label="Próximo">
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+        <!-- Container onde o JavaScript vai injetar todos os blocos e trilhas -->
+        <div id="cineDynamicBlocks"></div>
+    </div>
+</section>
 
 		<section id="ecossistema-ems" class="eco-stage">
 			<div class="eco-aura"></div>
@@ -2277,7 +2065,6 @@
 			<div class="eco-container">
 
 				<header class="eco-header">
-					<span class="eyebrow">Apoio 360° no Consultório</span>
 					<h2>O Ecossistema de Cuidado EMS</h2>
 					<p>Acesse portais de conscientização, programas de adesão e ferramentas médicas oficiais criadas para impulsionar a jornada do seu paciente.</p>
 				</header>
@@ -2327,53 +2114,56 @@
 			</div>
 		</section>
 
-		<section id="agenda-eventos-ems" class="cal-stage-light">
-			<div class="cal-container">
+		<!-- ═══════════════════════════════════════════
+     MÓDULO: EVENTOS & COBERTURA CIENTÍFICA EMS
+═══════════════════════════════════════════ -->
+<section id="agenda-eventos-ems" class="cal-stage-light">
+    <div class="cal-container">
 
-				<!-- Header Clean -->
-				<header class="cal-header">
-					<span class="eyebrow">Agenda & Cobertura Científica</span>
-					<h2>Calendário de Eventos</h2>
-					<p>Navegue pelos congressos internacionais e eventos proprietários. Acesse os artigos, destaques e fotos dos eventos que já aconteceram ou fique por dentro das próximos agendas.</p>
-				</header>
+        <!-- Header Clean -->
+        <header class="cal-header">
+            <span class="eyebrow">Agenda & Cobertura Científica</span>
+            <h2>Calendário de Eventos</h2>
+            <p>Navegue pelos congressos internacionais e eventos proprietários. Acesse os artigos, destaques e fotos dos eventos que já aconteceram ou fique por dentro das próximas agendas.</p>
+        </header>
 
-				<!-- Barra de Filtros e Meses -->
-				<div class="cal-controls-bar">
+        <!-- Barra de Filtros e Meses -->
+        <div class="cal-controls-bar">
 
-					<!-- Seletor de Meses -->
-					<div class="cal-month-selector" id="monthSelector">
-						<button class="month-btn is-active" onclick="filterByMonth('todos', this)">Todos os Meses</button>
-						<button class="month-btn" onclick="filterByMonth('maio', this)">Maio 2026</button>
-						<button class="month-btn" onclick="filterByMonth('junho', this)">Junho 2026</button>
-						<button class="month-btn" onclick="filterByMonth('setembro', this)">Setembro 2026</button>
-					</div>
+            <!-- Seletor de Meses -->
+            <div class="cal-month-selector" id="monthSelector">
+                <button class="month-btn is-active" onclick="filterByMonth('todos', this)">Todos os Meses</button>
+                <button class="month-btn" onclick="filterByMonth('maio', this)">Maio 2026</button>
+                <button class="month-btn" onclick="filterByMonth('junho', this)">Junho 2026</button>
+                <button class="month-btn" onclick="filterByMonth('setembro', this)">Setembro 2026</button>
+            </div>
 
-					<!-- Filtro de Tipo -->
-					<div class="cal-type-filter">
-						<button class="type-btn is-active" onclick="filterByType('todos', this)">Todos</button>
-						<button class="type-btn" onclick="filterByType('internacional', this)">Internacionais</button>
-						<button class="type-btn" onclick="filterByType('proprietario', this)">Eventos EMS</button>
-					</div>
-				</div>
+            <!-- Filtro de Tipo -->
+            <div class="cal-type-filter">
+                <button class="type-btn is-active" onclick="filterByType('todos', this)">Todos</button>
+                <button class="type-btn" onclick="filterByType('internacional', this)">Internacionais</button>
+                <button class="type-btn" onclick="filterByType('proprietario', this)">Eventos EMS</button>
+            </div>
+        </div>
 
-				<!-- Lista Estilo Calendário -->
-				<div class="cal-events-list" id="calEventsList">
-					<!-- Renderizado via JavaScript -->
-				</div>
-			</div>
-		</section>
+        <!-- Lista Estilo Calendário -->
+        <div class="cal-events-list" id="calEventsList">
+            <!-- Renderizado via JavaScript com a lógica invertida -->
+        </div>
+    </div>
+</section>
 
 		<script>
+			/* ═══════════════════════════════════════════
+			1. PORTFÓLIO SPOTLIGHT (MÓDULO 3 PRODUTOS)
+			═══════════════════════════════════════════ */
 			const PRODUCT_IMAGE = 'Design sem nome (35).png';
+			const PRODUCT_IMAGE_lirux = 'lirux.png';
 
 			const portfolio = [
 				{ id: 'ozivy', image: PRODUCT_IMAGE, name: 'Ozivy', molecule: 'Semaglutida', description: 'Tecnologia nacional com foco em adesão e estabilidade metabólica para o manejo de longo prazo.', claims: ['Adesão Semanal', 'Estabilidade Metabólica', 'Made in Brazil'], bula: '#bula-ozivy', teaser: false },
 				{ id: 'olire', image: PRODUCT_IMAGE, name: 'olire', molecule: 'Liraglutida', description: 'Consolidação clínica no controle crônico do peso corporal com titulação flexível de dose.', claims: ['Controle Crônico', 'Titulação Flexível', 'Saciedade Potente'], bula: '#bula-olire', teaser: false },
-				{ id: 'lirux', image: PRODUCT_IMAGE, name: 'Lirux', molecule: 'Liraglutida', description: 'Engenharia molecular nacional direcionada ao estímulo potente da saciedade e estabilidade glicêmica.', claims: ['Saciedade Potente', 'Engenharia Nacional', 'Estabilidade Glicêmica'], bula: '#bula-lirux', teaser: false },
-				{ id: 'aglitil', image: PRODUCT_IMAGE, name: 'Aglitil', molecule: 'Linagliptina', description: 'Alta performance no controle glicêmico otimizado para o paciente com diabetes mellitus tipo 2.', claims: ['Controle Glicêmico', 'Via Oral', 'Alta Absorção'], bula: '#bula-aglitil', teaser: false },
-				{ id: 'linadib', image: PRODUCT_IMAGE, name: 'Linadib', molecule: 'Linagliptina', description: 'Proteção metabólica e segurança cardiovascular integrada em monoterapia eficaz.', claims: ['Segurança CV', 'Monoterapia', 'Proteção Metabólica'], bula: '#bula-linadib', teaser: false },
-				{ id: 'linadib-duo', image: PRODUCT_IMAGE, name: 'Linadib Duo', molecule: 'Combinação Fixa', description: 'Sinergia molecular para o tratamento combinado de alta complexidade em DM2.', claims: ['Dupla Ação', 'Sinergia Molecular', 'Terapia Combinada'], bula: '#bula-linadib-duo', teaser: false },
-				{ id: 'glempa', image: PRODUCT_IMAGE, name: 'Glempa', molecule: 'Em Breve', description: 'O próximo grande lançamento da EMS focado na evolução do tratamento metabólico nacional.', claims: ['Lançamento 2026', 'Inovação EMS', 'EndoBoard VIP'], bula: '#endoboard', teaser: true, ctaLabel: 'Acesso VIP' }
+				{ id: 'lirux', image: PRODUCT_IMAGE_lirux, name: 'Lirux', molecule: 'Liraglutida', description: 'Engenharia molecular nacional direcionada ao estímulo potente da saciedade e estabilidade glicêmica.', claims: ['Saciedade Potente', 'Engenharia Nacional', 'Estabilidade Glicêmica'], bula: '#bula-lirux', teaser: false }
 			];
 
 			let activeIndex = 0;
@@ -2388,6 +2178,10 @@
 			const dockCounter = document.getElementById('dockCounter');
 
 			function buildDock() {
+				if (!orbitNav || !dockProgress) return;
+				orbitNav.innerHTML = '';
+				dockProgress.innerHTML = '';
+
 				portfolio.forEach((product, i) => {
 					const navBtn = document.createElement('button');
 					navBtn.className = 'orbit-nav-btn' + (i === 0 ? ' is-active' : '') + (product.teaser ? ' is-teaser' : '');
@@ -2408,6 +2202,7 @@
 		}
 
 		function renderFocus(product, index) {
+			if (!infoBlock || !spotlightInfo) return;
 			const ctaClass = product.teaser ? 'btn-bula btn-vip' : 'btn-bula';
 			const ctaLabel = product.ctaLabel || 'Acessar Bula';
 			const claimsHtml = (product.claims || []).map((claim, i) =>
@@ -2432,8 +2227,8 @@
 		}
 
 		function setActive(index, direction) {
-			if (index < 0 || index >= portfolio.length || isAnimating) return;
-			if (index === activeIndex && infoBlock.children.length) return;
+			if (!productImg || index < 0 || index >= portfolio.length || isAnimating) return;
+			if (index === activeIndex && infoBlock && infoBlock.children.length) return;
 
 			isAnimating = true;
 			const prevIndex = activeIndex;
@@ -2443,9 +2238,7 @@
 
 			productImg.classList.add('is-swapping');
 			productImg.style.opacity = '0';
-			productImg.style.transform = dir === 'prev'
-			? 'translateX(-30px) scale(0.94)'
-			: 'translateX(30px) scale(0.94)';
+			productImg.style.transform = dir === 'prev' ? 'translateX(-30px) scale(0.94)' : 'translateX(30px) scale(0.94)';
 
 			setTimeout(() => {
 				productImg.src = product.image || PRODUCT_IMAGE;
@@ -2462,8 +2255,8 @@
 		}, 220);
 
 	renderFocus(product, index);
-	spotlightAura.classList.toggle('is-teaser', product.teaser);
-	dockCounter.textContent = `${index + 1} / ${portfolio.length}`;
+	if (spotlightAura) spotlightAura.classList.toggle('is-teaser', product.teaser);
+	if (dockCounter) dockCounter.textContent = `${index + 1} / ${portfolio.length}`;
 
 	document.querySelectorAll('.orbit-nav-btn').forEach((btn, i) => {
 		btn.classList.toggle('is-active', i === index);
@@ -2472,193 +2265,236 @@ document.querySelectorAll('.dock-dot').forEach((dot, i) => {
 	dot.classList.toggle('is-active', i === index);
 });
 
-const activeThumb = orbitNav.querySelector('.orbit-nav-btn.is-active');
-if (activeThumb) {
-	const navRect = orbitNav.getBoundingClientRect();
-	const thumbRect = activeThumb.getBoundingClientRect();
-	const offset = (thumbRect.left + thumbRect.width / 2) - (navRect.left + navRect.width / 2);
-	orbitNav.scrollBy({ left: offset, behavior: 'smooth' });
+if (orbitNav) {
+	const activeThumb = orbitNav.querySelector('.orbit-nav-btn.is-active');
+	if (activeThumb) {
+		const navRect = orbitNav.getBoundingClientRect();
+		const thumbRect = activeThumb.getBoundingClientRect();
+		const offset = (thumbRect.left + thumbRect.width / 2) - (navRect.left + navRect.width / 2);
+		orbitNav.scrollBy({ left: offset, behavior: 'smooth' });
+	}
 }
 }
 
-document.getElementById('orbitPrev').addEventListener('click', () => {
-	setActive(activeIndex > 0 ? activeIndex - 1 : portfolio.length - 1, 'prev');
-});
+const prevBtn = document.getElementById('orbitPrev');
+const nextBtn = document.getElementById('orbitNext');
 
-document.getElementById('orbitNext').addEventListener('click', () => {
-	setActive(activeIndex < portfolio.length - 1 ? activeIndex + 1 : 0, 'next');
-});
+if (prevBtn) {
+	prevBtn.addEventListener('click', () => {
+		setActive(activeIndex > 0 ? activeIndex - 1 : portfolio.length - 1, 'prev');
+	});
+}
+
+if (nextBtn) {
+	nextBtn.addEventListener('click', () => {
+		setActive(activeIndex < portfolio.length - 1 ? activeIndex + 1 : 0, 'next');
+	});
+}
 
 document.addEventListener('keydown', (e) => {
 	const section = document.getElementById('modulo-portfolio');
 	if (!section) return;
-	if (e.key === 'ArrowLeft') document.getElementById('orbitPrev').click();
-	if (e.key === 'ArrowRight') document.getElementById('orbitNext').click();
+	if (e.key === 'ArrowLeft' && prevBtn) prevBtn.click();
+	if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
 });
 
-let touchStartX = 0;
-productImg.addEventListener('touchstart', (e) => {
-	touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
+if (productImg) {
+	let touchStartX = 0;
+	productImg.addEventListener('touchstart', (e) => {
+		touchStartX = e.changedTouches[0].screenX;
+	}, { passive: true });
 
 productImg.addEventListener('touchend', (e) => {
 	const diff = e.changedTouches[0].screenX - touchStartX;
 	if (Math.abs(diff) < 40) return;
-	if (diff < 0) document.getElementById('orbitNext').click();
-	else document.getElementById('orbitPrev').click();
+	if (diff < 0 && nextBtn) nextBtn.click();
+	else if (prevBtn) prevBtn.click();
 }, { passive: true });
+}
 
 buildDock();
 activeIndex = -1;
 setActive(0, 'next');
 
-/* CINE METABÓLICA — PORTAL INTERATIVO */
-const cineData = {
-	pediatria: {
-		theme: 'red',
-		episodes: [
-			{ ep: '01', time: '14 min', title: 'Indicações de GLP-1 em Adolescentes', desc: 'Quando e como iniciar a prescrição com segurança.', link: '#' },
-			{ ep: '02', time: '18 min', title: 'Titulação de Dose e Tolerabilidade', desc: 'Mitigando efeitos gastrointestinais no público jovem.', link: '#' },
-			{ ep: '03', time: '12 min', title: 'Abordagem no Consultório Pediátrico', desc: 'Engajamento da família no tratamento farmacológico.', link: '#' }
-		]
-	},
-	psiquiatria: {
-		theme: 'blue',
-		episodes: [
-			{ ep: '01', time: '16 min', title: 'Ganho de Peso por Psicotrópicos', desc: 'Análogos do GLP-1 para neutralizar efeitos metabólicos.', link: '#' },
-			{ ep: '02', time: '20 min', title: 'Controle do Ruído Mental e Compulsão', desc: 'Ação nos receptores centrais do sistema de recompensa.', link: '#' }
-		]
-	},
-	cardiologia: {
-		theme: 'red',
-		episodes: [
-			{ ep: '01', time: '15 min', title: 'Redução de Risco Cardiovascular', desc: 'Evidências de proteção vascular e endotelial.', link: '#' },
-			{ ep: '02', time: '22 min', title: 'Manejo na Insuficiência Cardíaca', desc: 'Ganhos em capacidade funcional e qualidade de vida.', link: '#' }
-		]
-	},
-	ortopedia: {
-		theme: 'blue',
-		episodes: [
-			{ ep: '01', time: '11 min', title: 'Descompressão Articular e Dor', desc: 'Impacto da perda ponderal nas articulações de carga.', link: '#' },
-			{ ep: '02', time: '19 min', title: 'Preservação de Massa Magra', desc: 'Prevenção de sarcopenia durante o uso do GLP-1.', link: '#' }
-		]
-	},
-	ginecologia: {
-		theme: 'red',
-		episodes: [
-			{ ep: '01', time: '17 min', title: 'SOP e Resistência à Insulina', desc: 'Otimização ovulatória e controle de peso na SOP.', link: '#' },
-			{ ep: '02', time: '13 min', title: 'Manejo Metabólico no Climatério', desc: 'Tratamento da desaceleração metabólica na menopausa.', link: '#' }
-		]
+/* ═══════════════════════════════════════════
+2. CINE METABÓLICA (NÃO FURA EXECUÇÃO DO SCRIPT)
+═══════════════════════════════════════════ */
+function scrollCineTrack(trackId, distance) {
+	const track = document.getElementById(trackId);
+	if (track) {
+		track.scrollBy({ left: distance, behavior: 'smooth' });
 	}
-};
-
-function switchSpecialty(key, element) {
-	// Atualiza a seleção visual das pills
-	document.querySelectorAll('.cine-insights .cine-insight').forEach(pill => {
-		pill.classList.remove('is-spec-active');
-	});
-element.classList.add('is-spec-active');
-
-const specInfo = cineData[key];
-if (!specInfo) return;
-
-const portal = document.getElementById('cinePortal');
-const prevBtn = document.getElementById('cineArrowPrev');
-const nextBtn = document.getElementById('cineArrowNext');
-
-// Alterna o tom de iluminação do fundo de acordo com o tema da especialidade
-if (specInfo.theme === 'red') {
-	portal.classList.add('is-tassiane');
-	portal.classList.remove('is-paula');
-	prevBtn.classList.add('theme-red');
-	nextBtn.classList.add('theme-red');
-} else {
-	portal.classList.add('is-paula');
-	portal.classList.remove('is-tassiane');
-	prevBtn.classList.remove('theme-red');
-	nextBtn.classList.remove('theme-red');
 }
 
-// Renderiza os episódios no formato exato da sua estrutura original
-const track = document.getElementById('cineEpisodesTrack');
-track.innerHTML = specInfo.episodes.map((item, index) => `
-	<a class="cine-episode theme-${specInfo.theme}" style="--delay:${0.1 + index * 0.08}s" href="${item.link}">
-	<div class="cine-episode-visual" data-ep="${item.ep}">
-	<div class="ep-glow"></div>
-	<div class="cine-episode-play">
-	<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"></polygon></svg>
-	</div>
-	</div>
-	<div class="cine-episode-meta">
-	<span class="ep-time">${item.time}</span>
-	<h4>${item.title}</h4>
-	<p>${item.desc}</p>
-	</div>
-	</a>
-	`).join('');
+/* ═══════════════════════════════════════════
+   CINE METABÓLICA — TODOS OS BLOCOS RENDERIZADOS VIA JS
+═══════════════════════════════════════════ */
 
-	track.scrollLeft = 0;
+const cineBlocksData = [
+    {
+        blockTitle: "Informativos do Produto",
+        blockNum: "BLOCO 01",
+        sections: [
+            {
+                id: "rowModoUso",
+                title: "Modo de Uso",
+                speaker: null,
+                episodes: [
+                    { ep: "01", time: "08 min", title: "Passo a Passo de Aplicação da Caneta", desc: "Demonstração prática do manuseio para orientar seu paciente.", thumb: "Design sem nome (35).png", link: "#modo-de-uso-1" },
+                    { ep: "02", time: "05 min", title: "Primeira Aplicação & Dúvidas Frequentes", desc: "Cuidados iniciais na rotina de prescrição no consultório.", thumb: "Design sem nome (35).png", link: "#modo-de-uso-2" }
+                ]
+            },
+            // {
+            //     id: "rowOzivy",
+            //     title: "Diferenciais do Ozivy",
+            //     speaker: null,
+            //     episodes: [
+            //         { ep: "01", time: "12 min", title: "Tecnologia de Produção da Semaglutida", desc: "Engenharia molecular e controle de qualidade EMS.", thumb: "Design sem nome (35).png", link: "#ozivy-1" },
+            //         { ep: "02", time: "10 min", title: "Estabilidade & Tolerabilidade", desc: "Atributos focados em manter a adesão no longo prazo.", thumb: "Design sem nome (35).png", link: "#ozivy-2" }
+            //     ]
+            // },
+            {
+                id: "rowInst",
+                title: "Conteúdos Institucionais e Educacionais do Produto",
+                speaker: null,
+                episodes: [
+                    { ep: "01", time: "15 min", title: "Pioneirismo no Tratamento Metabólico Nacional", desc: "Materiais integrados para apoio e suporte na tomada de decisão.", thumb: "Design sem nome (35).png", link: "#inst-1" }
+                ]
+            }
+        ]
+    },
+    {
+        blockTitle: "Prática Clínica",
+        blockNum: "BLOCO 02",
+        sections: [
+            {
+                id: "rowHandsOn",
+                title: "Trilha Hands On",
+                speaker: {
+                    name: "Hands On Prescrição",
+                    role: "Prática Clínica",
+                    avatar: "Design sem nome (39).png",
+                    bullets: ["Titulação de Dose Prática", "Manejo de Colaterais", "Condução de Consultório"]
+                },
+                episodes: [
+                    { ep: "01", time: "18 min", title: "Titulação de Dose e Tolerabilidade Prática", desc: "Conduta para conduzir o paciente com segurança desde a 1ª semana.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-1" },
+                    { ep: "02", time: "18 min", title: "Ajustes Práticos de Dose em Protocolos", desc: "Manejo contínuo em pacientes com sensibilidade gastrointestinal.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-2" },
+                    { ep: "03", time: "18 min", title: "Estratégias de Manutenção e Adesão", desc: "Como manter o paciente motivado e engajado no tratamento.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-3" }
+                ]
+            },
+            {
+                id: "rowDraPaula",
+                title: "Trilha de Perda de Peso — Dra. Tassiane Alvarenga",
+                speaker: {
+                    name: "Dra. Paula Pires",
+                    role: "Endocrinologista",
+                    avatar: "Design sem nome (39).png",
+                    bullets: ["Comunicação Empática", "Adesão de Longo Prazo", "Manejo do Estigma do Peso"]
+                },
+                episodes: [
+                    { ep: "01", time: "20 min", title: "Comunicação e Adesão no Consultório", desc: "Empatia e fidelização da conduta na perda de peso.", thumb: "capa-tassi-perda-de-peso.png", link: "#paula-1" },
+                    { ep: "02", time: "20 min", title: "Abordagem do Peso e Ruído Mental", desc: "Técnicas de consulta para mitigar o estigma no atendimento.", thumb: "capa-tassi-perda-de-peso.png", link: "#paula-2" }
+                ]
+            },
+            {
+                id: "rowZagury",
+                title: "Endo Glass — Dr. Zagury",
+                speaker: {
+                    name: "Dr. Zagury",
+                    role: "Endocrinologista",
+                    avatar: "Design sem nome (39).png",
+                    bullets: ["Evidências Clínicas", "Fisiopatologia Metabólica", "Mecanismos Aprofundados"]
+                },
+                episodes: [
+                    { ep: "01", time: "25 min", title: "Análise Científica Aprofundada — Endo Glass", desc: "Análise cirúrgica dos dados dos ensaios clínicos e farmacoterapia.", thumb: "Design sem nome (35).png", link: "#zagury-1" },
+                    { ep: "02", time: "25 min", title: "Proteção Vascular e Mecanismos GLP-1", desc: "Estudo detalhado dos impactos endoteliais e fisiopatologia.", thumb: "Design sem nome (35).png", link: "#zagury-2" }
+                ]
+            }
+        ]
+    }
+];
+
+function renderCineMetabolica() {
+    const mainContainer = document.getElementById("cineDynamicBlocks");
+    if (!mainContainer) return;
+
+    mainContainer.innerHTML = cineBlocksData.map(block => `
+        <div class="cine-block-title" style="${block.blockNum === 'BLOCO 02' ? 'margin-top: 70px;' : ''}">
+            <h3>${block.blockTitle}</h3>
+        </div>
+
+        ${block.sections.map(sec => {
+            // Renderiza o HTML do Speaker caso a seção tenha médico cadastrado
+            const speakerHtml = sec.speaker ? `
+                <div class="speaker-avatar-wrapper">
+                    <div class="speaker-glow-aura"></div>
+                    <img class="speaker-cutout-img" src="${sec.speaker.avatar}" alt="${sec.speaker.name}">
+                    <div class="speaker-info-text">
+                        <span class="role">${sec.speaker.role}</span>
+                        <span class="name">${sec.speaker.name}</span>
+                    </div>
+                    <div class="speaker-lek-orbit">
+                        ${sec.speaker.bullets.map(b => `<div class="lek-bullet">${b}</div>`).join('')}
+                    </div>
+                </div>
+            ` : '';
+
+            // Renderiza os Cards dos Episódios com a Capa
+            const episodesHtml = sec.episodes.map(ep => `
+                <a class="cine-episode" href="${ep.link}">
+                    <div class="cine-episode-visual" data-ep="${ep.ep}">
+                        ${ep.thumb ? `<img class="ep-thumb" src="${ep.thumb}" alt="${ep.title}">` : ''}
+                        <div class="ep-glow"></div>
+                        <div class="cine-episode-play">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"></polygon></svg>
+                        </div>
+                    </div>
+                    <div class="cine-episode-meta">
+                        <span class="ep-time">${ep.time}</span>
+                        <h4>${ep.title}</h4>
+                        <p>${ep.desc}</p>
+                    </div>
+                </a>
+            `).join('');
+
+            return `
+                <div class="cine-section-header">
+                    <div class="cine-section-title">${sec.title}</div>
+                    ${speakerHtml}
+                </div>
+
+                <div class="cine-track-container">
+                    <button class="cine-arrow-nav cine-arrow-left" onclick="scrollCineTrack('${sec.id}', -320)" aria-label="Anterior">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+
+                    <div class="cine-track-netflix" id="${sec.id}">
+                        ${episodesHtml}
+                    </div>
+
+                    <button class="cine-arrow-nav cine-arrow-right" onclick="scrollCineTrack('${sec.id}', 320)" aria-label="Próximo">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            `;
+        }).join('')}
+    `).join('');
 }
 
-function scrollCineTrack(distance) {
-	const track = document.getElementById('cineEpisodesTrack');
-	track.scrollBy({ left: distance, behavior: 'smooth' });
+// Rola a trilha lateralmente
+function scrollCineTrack(trackId, distance) {
+    const track = document.getElementById(trackId);
+    if (track) {
+        track.scrollBy({ left: distance, behavior: 'smooth' });
+    }
 }
 
-// Inicializa carregando Pediatria por padrão
-switchSpecialty('pediatria', document.querySelector('.cine-insights .cine-insight'));
+// Inicializa a renderização
+renderCineMetabolica();
 
-const ecosystemData = {
-	pesoInvisivel: {
-		tag: 'Portal de Conscientização & Jornada',
-		title: 'O Peso Invisível',
-		desc: 'Um portal dedicado a desmistificar a biologia da obesidade, o ruído mental do apetite e o impacto do estigma. Conteúdo educativo profundo para você compartilhar com seu paciente.',
-		url: 'opesoinvisivel.com.br',
-		highlights: [
-			'Compreensão da neurobiologia do peso e estigma social',
-			'Materiais educativos de apoio para o consultório',
-			'Conteúdo focado na jornada real do paciente'
-		],
-		btnText: 'Explorar O Peso Invisível ↗',
-		btnLink: 'https://opesoinvisivel.com.br/',
-		previewBadge: 'Portal de Conscientização',
-		previewTitle: 'O Peso Invisível',
-		previewDesc: 'Ações centrais e neurobiologia no controle crônico do peso.'
-	},
-	vidaMaisLeve: {
-		tag: 'Programa de Benefícios & Adesão EMS',
-		title: 'Portal Vida Mais Leve',
-		desc: 'O programa oficial da EMS para garantir que seu paciente tenha acesso financeiro facilitado ao tratamento com os análogos de GLP-1 (como Ozivy, olire e Lirux).',
-		url: 'vidamaisleve.emssaude.com.br',
-		highlights: [
-			'Descontos exclusivos nas canetas para o paciente',
-			'Aumento comprovado na adesão ao tratamento crônico',
-			'Cadastro simples e rápido diretamente pelo portal'
-		],
-		btnText: 'Acessar Vida Mais Leve ↗',
-		btnLink: 'https://vidamaisleve.emssaude.com.br/',
-		previewBadge: 'Programa de Benefícios',
-		previewTitle: 'Vida Mais Leve',
-		previewDesc: 'Tratamento acessível e suporte contínuo para o paciente.'
-	},
-	calculadoraDM2: {
-		tag: 'Ferramenta Médica de Triagem • SBD',
-		title: 'Calculadora de Risco DM2',
-		desc: 'Ferramenta oficial com o patrocínio da EMS para estimar o risco de Diabetes Mellitus Tipo 2 em crianças e adolescentes de forma rápida durante a consulta.',
-		url: 'diabetes.org.br/risco-dm2',
-		highlights: [
-			'Patrocínio Oficial EMS em parceria com SBD',
-			'Triagem ágil de risco em jovens durante o atendimento',
-			'Suporte direto para a conduta do não especialista'
-		],
-		btnText: 'Abrir Calculadora Oficial ↗',
-		btnLink: 'https://diabetes.org.br/risco-dm2/',
-		previewBadge: 'Patrocínio Oficial EMS',
-		previewTitle: 'Calculadora DM2',
-		previewDesc: 'Avaliação de risco rápida em pediatria e hebiatria.'
-	}
-};
-
+/* ═══════════════════════════════════════════
+3. ECOSSISTEMA EMS (AUTOPLAY DE 4s)
+═══════════════════════════════════════════ */
 const ecosystemItems = [
 	{
 		key: 'pesoInvisivel',
@@ -2673,8 +2509,8 @@ const ecosystemItems = [
 		],
 		btnText: 'Explorar O Peso Invisível ↗',
 		btnLink: 'https://opesoinvisivel.com.br/',
-		mediaType: 'video', // Pode trocar para 'video' se tiver o arquivo MP4
-		mediaSrc: 'OPI_HUB_METABÓLICA_v2.mp4', // Imagem/Print do site O Peso Invisível
+		mediaType: 'video',
+		mediaSrc: 'OPI_HUB_METABÓLICA_v2.mp4',
 		mediaBadge: 'Conscientização',
 		mediaTitle: 'O Peso Invisível',
 		mediaDesc: 'Ações centrais e biologia do controle crônico.'
@@ -2693,7 +2529,7 @@ const ecosystemItems = [
 		btnText: 'Acessar Vida Mais Leve ↗',
 		btnLink: 'https://vidamaisleve.emssaude.com.br/',
 		mediaType: 'image',
-		mediaSrc: 'section-atualizada.webp', // Imagem/Print do Vida Mais Leve
+		mediaSrc: 'section-atualizada.webp',
 		mediaBadge: 'Programa de Benefícios',
 		mediaTitle: 'Vida Mais Leve',
 		mediaDesc: 'Tratamento acessível e suporte contínuo.'
@@ -2712,7 +2548,7 @@ const ecosystemItems = [
 		btnText: 'Abrir Calculadora Oficial ↗',
 		btnLink: 'https://diabetes.org.br/risco-dm2/',
 		mediaType: 'video',
-		mediaSrc: 'sbd-calc-dm2.mp4', // Imagem/Print da Calculadora
+		mediaSrc: 'sbd-calc-dm2.mp4',
 		mediaBadge: 'Patrocínio Oficial',
 		mediaTitle: 'Calculadora DM2',
 		mediaDesc: 'Triagem rápida para pediatria e hebiatria.'
@@ -2721,66 +2557,66 @@ const ecosystemItems = [
 
 let currentEcoIndex = 0;
 let ecoTimer = null;
-const AUTO_PLAY_TIME = 4000; // 4 Segundos
+const AUTO_PLAY_TIME = 4000;
 
 function renderEcosystemIndex(index) {
 	currentEcoIndex = index;
 	const data = ecosystemItems[index];
 	if (!data) return;
 
-	// Atualiza Botões / Pills
 	const buttons = document.querySelectorAll('#ecoPillsNav .eco-pill-btn');
 	buttons.forEach((btn, idx) => {
 		btn.classList.toggle('is-active', idx === index);
 	});
 
-// Painel de Texto Esquerdo
 const infoPanel = document.getElementById('ecoInfoPanel');
-infoPanel.style.animation = 'none';
-void infoPanel.offsetWidth; // Reflow
-infoPanel.style.animation = 'stageContentIn 0.4s ease-out both';
+if (infoPanel) {
+	infoPanel.style.animation = 'none';
+	void infoPanel.offsetWidth;
+	infoPanel.style.animation = 'stageContentIn 0.4s ease-out both';
 
-infoPanel.innerHTML = `
-<span class="portal-tag">${data.tag}</span>
-<h3>${data.title}</h3>
-<p class="desc">${data.desc}</p>
-
-<div class="eco-highlights">
-${data.highlights.map(h => `
-	<div class="eco-chip-item">
-	<span class="check-icon">✓</span>
-	<span>${h}</span>
-	</div>
-	`).join('')}
-	</div>
-
-	<a href="${data.btnLink}" target="_blank" rel="noopener" class="btn-eco-action">
-	${data.btnText}
-	</a>
-	`;
-
-	// URL e Mídia do Dispositivo
-	document.getElementById('deviceUrl').textContent = data.url;
-	const mediaContainer = document.getElementById('mediaContainer');
-
-	let mediaHtml = '';
-	if (data.mediaType === 'video') {
-		mediaHtml = `
-		<video class="eco-media-content" autoplay loop muted playsinline>
-		<source src="${data.mediaSrc}" type="video/mp4">
-		</video>`;
-	} else {
-		mediaHtml = `<img class="eco-media-content" src="${data.mediaSrc}" alt="${data.title}">`;
+	infoPanel.innerHTML = `
+	<span class="portal-tag">${data.tag}</span>
+	<h3>${data.title}</h3>
+	<p class="desc">${data.desc}</p>
+	<div class="eco-highlights">
+	${data.highlights.map(h => `
+		<div class="eco-chip-item">
+		<span class="check-icon">✓</span>
+		<span>${h}</span>
+		</div>
+		`).join('')}
+		</div>
+		<a href="${data.btnLink}" target="_blank" rel="noopener" class="btn-eco-action">
+		${data.btnText}
+		</a>
+		`;
 	}
 
-	mediaContainer.innerHTML = `
-	${mediaHtml}
-	<div class="eco-media-overlay">
-	<span class="media-badge">${data.mediaBadge}</span>
-	<h4>${data.mediaTitle}</h4>
-	<p>${data.mediaDesc}</p>
-	</div>
-	`;
+	const deviceUrl = document.getElementById('deviceUrl');
+	if (deviceUrl) deviceUrl.textContent = data.url;
+
+	const mediaContainer = document.getElementById('mediaContainer');
+	if (mediaContainer) {
+		let mediaHtml = '';
+		if (data.mediaType === 'video') {
+			mediaHtml = `
+			<video class="eco-media-content" autoplay loop muted playsinline>
+			<source src="${data.mediaSrc}" type="video/mp4">
+			</video>`;
+		} else {
+			mediaHtml = `<img class="eco-media-content" src="${data.mediaSrc}" alt="${data.title}">`;
+		}
+
+		mediaContainer.innerHTML = `
+		${mediaHtml}
+		<div class="eco-media-overlay">
+		<span class="media-badge">${data.mediaBadge}</span>
+		<h4>${data.mediaTitle}</h4>
+		<p>${data.mediaDesc}</p>
+		</div>
+		`;
+	}
 }
 
 function startEcoAutoPlay() {
@@ -2798,140 +2634,263 @@ function stopEcoAutoPlay() {
 function userSelectEcosystem(index) {
 	stopEcoAutoPlay();
 	renderEcosystemIndex(index);
-	startEcoAutoPlay(); // Reinicia os 4s a partir do clique
+	startEcoAutoPlay();
 }
 
-// Pausa o temporizador se o usuário colocar o mouse sobre o bloco
 const stageBox = document.getElementById('ecoStageBox');
-stageBox.addEventListener('mouseenter', stopEcoAutoPlay);
-stageBox.addEventListener('mouseleave', startEcoAutoPlay);
+if (stageBox) {
+	stageBox.addEventListener('mouseenter', stopEcoAutoPlay);
+	stageBox.addEventListener('mouseleave', startEcoAutoPlay);
+}
 
-// Inicialização
 renderEcosystemIndex(0);
 startEcoAutoPlay();
 
+/* ═══════════════════════════════════════════
+   4. MÓDULO DE EVENTOS & AGENDA EMS
+═══════════════════════════════════════════ */
+
+// A) PRÓXIMOS CONGRESSOS (BANERS EM DESTAQUE - LIMPOS E IMPACTANTES)
+/* ═══════════════════════════════════════════
+   4. CALENDÁRIO DE EVENTOS EMS (INVERSÃO DE LAYOUTS)
+═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   4. CALENDÁRIO DE EVENTOS EMS (LAYOUT PADRÃO UNIFICADO)
+═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   4. CALENDÁRIO DE EVENTOS EMS (PADRONIZADO)
+═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   4. CALENDÁRIO DE EVENTOS EMS (BANNERS PRÓXIMOS 100% LIMPOS E NÍTIDOS)
+═══════════════════════════════════════════ */
 const calendarData = [
+    {
+        id: 1,
+        monthKey: 'maio',
+        type: 'internacional',
+        typeBadge: 'Congresso Internacional • Passado',
+        dayNum: '12-15',
+        monthName: 'MAIO / 2026',
+        title: 'ECO 2026 — European Congress on Obesity',
+        desc: 'Destaques e análise das novas diretrizes europeias pelo olhar da Dra. Tassiane Alvarenga.',
+        location: '📍 Istambul, Turquia',
+        bannerImg: 'https://eco2026.org/assets/img/inner-header.jpg',
+        btnText: 'Ver Highlights →',
+        btnLink: '#artigo-eco2026',
+        isFuture: false // Evento passado (Com texto, descrição e botão)
+    },
+    {
+        id: 2,
+        monthKey: 'maio',
+        type: 'proprietario',
+        typeBadge: 'Evento Proprietário EMS • Passado',
+        dayNum: '28',
+        monthName: 'MAIO / 2026',
+        title: 'O Peso Invisível — Imersão Científica',
+        desc: 'Imersão focada na neurobiologia do peso e conduta de consultório com a galeria de fotos e resumos.',
+        location: '📍 São Paulo, SP',
+        bannerImg: 'image 17.png',
+        btnText: 'Veja como foi →',
+        btnLink: 'https://opesoinvisivel.com.br/',
+        isFuture: false // Evento passado
+    },
+    {
+        id: 3,
+        monthKey: 'junho',
+        type: 'internacional',
+        typeBadge: '• PRÓXIMO CONGRESSO',
+        dayNum: '26-29',
+        monthName: 'JUNHO / 2026',
+        bannerImg: 'Banner_SBEM_CBEM_700x455.png',
+        isFuture: true // PRÓXIMO EVENTO: Sem escurecimento na foto, sem título e sem textos
+    },
+    {
+        id: 4,
+        monthKey: 'setembro',
+        type: 'internacional',
+        typeBadge: '• PRÓXIMO EVENTO EMS',
+        dayNum: '28-02',
+        monthName: 'SET / 2026',
+        bannerImg: 'https://www.easd.org/uploads/pce_966.jpg?c=cbbea302a4a432abb5164a754851c878',
+        isFuture: true // PRÓXIMO EVENTO: Banner limpo e nítido
+    },
 	{
-		id: 1,
-		monthKey: 'maio',
-		type: 'internacional',
-		typeBadge: 'Congresso Internacional • Passado',
-		dayNum: '12-15',
-		monthName: 'MAIO / 2026',
-		title: 'ECO 2026 — European Congress on Obesity',
-		desc: 'Destaques e análise das novas diretrizes europeias pelo olhar da Dra. Tassiane Alvarenga.',
-		location: '📍 Istambul, Turquia',
-		status: 'done', // done = já rolou / future = vai rolar
-		btnText: 'Ler Artigo & Highlights →',
-		btnLink: '#artigo-eco2026'
-	},
-	{
-		id: 2,
-		monthKey: 'maio',
-		type: 'proprietario',
-		typeBadge: 'Evento Proprietário EMS • Passado',
-		dayNum: '28',
-		monthName: 'MAIO / 2026',
-		title: 'O Peso Invisível — Imersão Científica',
-		desc: 'Imersão focada na neurobiologia do peso e conduta de consultório.',
-		location: '📍 São Paulo, SP',
-		status: 'done',
-		btnText: 'Veja como foi →',
-		btnLink: 'https://opesoinvisivel.com.br/'
-	},
-	{
-		id: 3,
-		monthKey: 'junho',
-		type: 'internacional',
-		typeBadge: 'Congresso Internacional • Em Breve',
-		dayNum: '19-22',
-		monthName: 'JUNHO / 2026',
-		title: 'ADA 86th Scientific Sessions',
-		desc: 'Cobertura das principais evidências sobre análogos de GLP-1 e proteção cardiovascular.',
-		location: '📍 Estados Unidos',
-		status: 'future',
-		btnText: 'EM BREVE • Atualizaçoes no portal',
-		btnLink: '#'
-	},
-	{
-		id: 4,
-		monthKey: 'setembro',
-		type: 'proprietario',
-		typeBadge: 'Evento EMS • Confirmado',
-		dayNum: '15',
-		monthName: 'SET / 2026',
-		title: 'EndoBoard VIP — Inovação Metabólica EMS',
-		desc: 'Encontro fechado de líderes de opinião para discussão do portfólio de endocrinologia.',
-		location: '📍 São Paulo, SP',
-		status: 'future',
-		btnText: 'EM BREVE • Atualizações no portal',
-		btnLink: '#'
-	}
+        id: 5,
+        monthKey: 'setembro',
+        type: 'proprietario',
+        typeBadge: '• PRÓXIMO EVENTO EMS',
+        dayNum: '28-31',
+        monthName: 'SET / 2026',
+        bannerImg: 'flaso2.png',
+        isFuture: true // PRÓXIMO EVENTO: Banner limpo e nítido
+    }
 ];
 
 let activeMonthFilter = 'todos';
 let activeTypeFilter = 'todos';
 
 function renderCalendar() {
-	const listContainer = document.getElementById('calEventsList');
-	listContainer.innerHTML = '';
+    const listContainer = document.getElementById('calEventsList');
+    if (!listContainer) return;
 
-	const filtered = calendarData.filter(item => {
-		const matchMonth = (activeMonthFilter === 'todos' || item.monthKey === activeMonthFilter);
-		const matchType = (activeTypeFilter === 'todos' || item.type === activeTypeFilter);
-		return matchMonth && matchType;
-	});
+    listContainer.innerHTML = '';
 
-if (filtered.length === 0) {
-	listContainer.innerHTML = `
-	<div style="text-align:center; padding: 40px; color: #94a3b8; font-size: 14px;">
-	Nenhum evento encontrado para esse filtro.
-	</div>`;
-	return;
-}
+    const filtered = calendarData.filter(item => {
+        const matchMonth = (activeMonthFilter === 'todos' || item.monthKey === activeMonthFilter);
+        const matchType = (activeTypeFilter === 'todos' || item.type === activeTypeFilter);
+        return matchMonth && matchType;
+    });
 
-filtered.forEach(item => {
-	const isDone = item.status === 'done';
-	const btnClass = isDone ? 'btn-cal-action has-link' : 'btn-cal-action is-future';
+    if (filtered.length === 0) {
+        listContainer.innerHTML = `
+            <div style="text-align:center; padding: 40px; color: #94a3b8; font-size: 14px;">
+                Nenhum evento encontrado para esse filtro.
+            </div>`;
+        return;
+    }
 
-	const row = document.createElement('div');
-	row.className = 'cal-event-row';
-	row.innerHTML = `
-	<div class="cal-date-block">
-	<span class="day-num">${item.dayNum}</span>
-	<span class="month-name">${item.monthName}</span>
-	</div>
+    filtered.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'cal-event-banner-card';
 
-	<div class="cal-details-block">
-	<span class="event-type-pill ${item.type}">${item.typeBadge}</span>
-	<h3>${item.title}</h3>
-	<p>${item.desc}</p>
-	<span class="location-tag">${item.location}</span>
-	</div>
+        // LÓGICA 1: PRÓXIMOS EVENTOS (IMAGEM 100% BRILHANTE / SEM OVERLAY ESCURO / SEM TÍTULO)
+        if (item.isFuture) {
+            row.style.cssText = `
+                position: relative;
+                border-radius: 20px;
+                margin-bottom: 20px;
+                overflow: hidden;
+                border: 1px solid rgba(32, 255, 255, 0.4);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+                cursor: pointer;
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+            `;
 
-	<div class="cal-action-block">
-	<a href="${item.btnLink}" class="${btnClass}">${item.btnText}</a>
-	</div>
-	`;
-	listContainer.appendChild(row);
-});
+            row.innerHTML = `
+                <div style="position: relative;padding: 53px 36px;min-height: 150px;display: flex;grid-template-columns: 130px 1fr;gap: 28px;align-items: flex-start;z-index: 5;flex-direction: column;;">
+                    
+                    <!-- IMAGEM DE FUNDO DO BANNER (100% NÍTIDA E SEM FILTRO ESCURO) -->
+                    <div class="banner-bg-media" style="position: absolute; inset: 0; z-index: 1; overflow: hidden;">
+                        <img src="${item.bannerImg}" alt="Próximo Evento" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
+                    </div>
+
+                    <!-- FEIXE DE LUZ CIANO (SHINE EFFECT NO HOVER) -->
+                    <div class="banner-shine-light" style="position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(32, 255, 255, 0.35), transparent); transform: skewX(-25deg); z-index: 2; pointer-events: none; transition: left 0.75s ease;"></div>
+
+                    <!-- Coluna 1: Data Iluminada -->
+                    <div style="position: relative; z-index: 6; background: rgba(2, 6, 23, 0.82); border: 1px solid rgba(32, 255, 255, 0.6); backdrop-filter: blur(12px); border-radius: 14px; padding: 14px; text-align: center;">
+                        <span style="color: #20FFFF; font-size: 26px; font-weight: 900; display: block; line-height: 1;">${item.dayNum}</span>
+                        <span style="color: #ffffff; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block;">${item.monthName}</span>
+                    </div>
+
+                    <!-- Coluna 2: Apenas Tag Azul Flutuante (Sem Título ou Texto) -->
+                    <div class="cal-details-block" style="position: relative; z-index: 6;">
+                        <span style="background: #20FFFF; color: #2D3766; font-weight: 900; padding: 4px 14px; border-radius: 50px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; display: inline-block; margin-bottom: 8px; box-shadow: 0 0 15px rgba(32, 255, 255, 0.4);">
+                            ${item.typeBadge}
+                        </span>
+                    </div>
+
+                </div>
+            `;
+        } 
+        
+        // LÓGICA 2: EVENTOS PASSADOS (MANTÉM CONTEÚDO E BOTÃO)
+        else {
+            row.style.cssText = `
+                position: relative;
+                border-radius: 20px;
+                margin-bottom: 20px;
+                overflow: hidden;
+                border: 1px solid rgba(32, 255, 255, 0.35);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+                cursor: pointer;
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+            `;
+
+            row.innerHTML = `
+                <div style="position: relative; padding: 32px 36px; min-height: 160px; display: grid; grid-template-columns: 130px 1fr 220px; gap: 28px; align-items: center; z-index: 5;">
+                    
+                    <!-- IMAGEM COM OVERLAY ESCURO PARA LEITURA DE TEXTO -->
+                    <div class="banner-bg-media" style="position: absolute; inset: 0; z-index: 1; overflow: hidden;">
+                        <img src="${item.bannerImg}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); filter: brightness(0.55) contrast(1.1);">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, #020617 0%, rgba(45, 55, 102, 0.85) 50%, rgba(2, 6, 23, 0.75) 100%); mix-blend-mode: multiply;"></div>
+                        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 23, 0.9) 100%);"></div>
+                    </div>
+
+                    <!-- FEIXE DE LUZ -->
+                    <div class="banner-shine-light" style="position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(32, 255, 255, 0.3), transparent); transform: skewX(-25deg); z-index: 2; pointer-events: none; transition: left 0.75s ease;"></div>
+
+                    <!-- Coluna 1: Data -->
+                    <div style="position: relative; z-index: 6; background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(32, 255, 255, 0.5); backdrop-filter: blur(12px); border-radius: 14px; padding: 14px; text-align: center;">
+                        <span style="color: #20FFFF; font-size: 26px; font-weight: 900; display: block; line-height: 1;">${item.dayNum}</span>
+                        <span style="color: #ffffff; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block;">${item.monthName}</span>
+                    </div>
+
+                    <!-- Coluna 2: Informações -->
+                    <div class="cal-details-block" style="position: relative; z-index: 6;">
+                        <span style="background: #20FFFF; color: #2D3766; font-weight: 900; padding: 4px 14px; border-radius: 50px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; display: inline-block; margin-bottom: 8px; box-shadow: 0 0 15px rgba(32, 255, 255, 0.4);">
+                            ${item.typeBadge}
+                        </span>
+                        <h3 style="color: #ffffff; font-size: 21px; font-weight: 900; margin-bottom: 6px; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">${item.title}</h3>
+                        <p style="color: #e2e8f0; font-size: 13px; margin-bottom: 6px; line-height: 1.5; max-width: 580px;">${item.desc}</p>
+                        <span style="color: #20FFFF; font-weight: 800; font-size: 12px; display: block;">${item.location}</span>
+                    </div>
+
+                    <!-- Coluna 3: Botão -->
+                    <div style="position: relative; z-index: 6; text-align: right;">
+                        <a href="${item.btnLink}" style="background: linear-gradient(90deg, #258091 0%, #20FFFF 100%); color: #2D3766; padding: 12px 22px; border-radius: 50px; font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; display: inline-block; box-shadow: 0 0 20px rgba(32, 255, 255, 0.35); transition: all 0.3s ease;">
+                            ${item.btnText}
+                        </a>
+                    </div>
+
+                </div>
+            `;
+        }
+
+        // Animação de Hover (Zoom na Foto + Feixe de Luz)
+        row.addEventListener('mouseenter', () => {
+            row.style.transform = 'translateY(-6px) scale(1.01)';
+            row.style.borderColor = '#20FFFF';
+            row.style.boxShadow = '0 20px 45px rgba(32, 255, 255, 0.35)';
+
+            const img = row.querySelector('.banner-bg-media img');
+            if (img) img.style.transform = 'scale(1.08)';
+
+            const shine = row.querySelector('.banner-shine-light');
+            if (shine) shine.style.left = '150%';
+        });
+
+        row.addEventListener('mouseleave', () => {
+            row.style.transform = 'translateY(0) scale(1)';
+            row.style.borderColor = 'rgba(32, 255, 255, 0.4)';
+            row.style.boxShadow = '0 12px 30px rgba(0,0,0,0.35)';
+
+            const img = row.querySelector('.banner-bg-media img');
+            if (img) img.style.transform = 'scale(1)';
+
+            const shine = row.querySelector('.banner-shine-light');
+            if (shine) shine.style.left = '-100%';
+        });
+
+        listContainer.appendChild(row);
+    });
 }
 
 function filterByMonth(month, btn) {
-	activeMonthFilter = month;
-	document.querySelectorAll('#monthSelector .month-btn').forEach(b => b.classList.remove('is-active'));
-	if (btn) btn.classList.add('is-active');
-	renderCalendar();
+    activeMonthFilter = month;
+    document.querySelectorAll('#monthSelector .month-btn').forEach(b => b.classList.remove('is-active'));
+    if (btn) btn.classList.add('is-active');
+    renderCalendar();
 }
 
 function filterByType(type, btn) {
-	activeTypeFilter = type;
-	document.querySelectorAll('.cal-type-filter .type-btn').forEach(b => b.classList.remove('is-active'));
-	if (btn) btn.classList.add('is-active');
-	renderCalendar();
+    activeTypeFilter = type;
+    document.querySelectorAll('.cal-type-filter .type-btn').forEach(b => b.classList.remove('is-active'));
+    if (btn) btn.classList.add('is-active');
+    renderCalendar();
 }
 
-// Inicialização
+// Inicializa a renderização
 renderCalendar();
 		</script>
 	</body>
