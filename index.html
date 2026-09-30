@@ -1117,32 +1117,32 @@
 				color: inherit;
 				transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 			}
-
+			
 			/* CAPA DO VÍDEO NO CARD */
-.cine-episode-visual {
-    position: relative;
-    overflow: hidden;
-}
-
-.cine-episode-visual img.ep-thumb {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1; /* Fica no fundo */
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Garante que o gradiente, número do ep e ícone de play fiquem POR CIMA da foto */
-.cine-episode-visual .ep-glow { z-index: 2; position: relative; }
-.cine-episode-visual::before { z-index: 3; }
-.cine-episode-play { z-index: 4; }
-
-/* Zoom da capa no hover */
-.cine-episode:hover .cine-episode-visual img.ep-thumb {
-    transform: scale(1.08);
-}
+			.cine-episode-visual {
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.cine-episode-visual img.ep-thumb {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				z-index: 1; /* Fica no fundo */
+				transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			
+			/* Garante que o gradiente, número do ep e ícone de play fiquem POR CIMA da foto */
+			.cine-episode-visual .ep-glow { z-index: 2; position: relative; }
+			.cine-episode-visual::before { z-index: 3; }
+			.cine-episode-play { z-index: 4; }
+			
+			/* Zoom da capa no hover */
+			.cine-episode:hover .cine-episode-visual img.ep-thumb {
+				transform: scale(1.08);
+			}
 			
 			.cine-episode:hover {
 				transform: translateY(-8px) scale(1.02);
@@ -1927,16 +1927,1317 @@
 					text-align: left;
 				}
 			}
+
+			/* ═══════════════════════════════════════════
+			   REFINOS DE INTERFACE — HEADER, HERO, CINE E EVENTOS
+			   ═══════════════════════════════════════════ */
+			.hub-site-header {
+				position: sticky;
+				top: 0;
+				z-index: 1200;
+				background: rgba(252, 253, 253, 0.9);
+				backdrop-filter: blur(18px);
+				-webkit-backdrop-filter: blur(18px);
+				border-bottom: 1px solid rgba(0, 59, 115, 0.08);
+				box-shadow: 0 8px 30px rgba(0, 59, 115, 0.035);
+			}
+
+			.hub-site-header-inner {
+				max-width: 1180px;
+				height: 72px;
+				margin: 0 auto;
+				padding: 0 24px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 28px;
+			}
+
+			.hub-brand {
+				display: inline-flex;
+				align-items: center;
+				gap: 11px;
+				text-decoration: none;
+				color: var(--ems-blue-dark);
+				white-space: nowrap;
+			}
+
+			.hub-brand-mark {
+				width: 34px;
+				height: 34px;
+				border-radius: 11px;
+				background: linear-gradient(135deg, #003b73 0%, #0094da 100%);
+				position: relative;
+				box-shadow: 0 8px 20px rgba(0, 148, 218, 0.16);
+			}
+
+			.hub-brand-mark::after {
+				content: '';
+				position: absolute;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: #ffffff;
+				top: 7px;
+				right: 7px;
+				opacity: 0.95;
+			}
+
+			.hub-brand-copy {
+				display: flex;
+				flex-direction: column;
+				line-height: 1.05;
+			}
+
+			.hub-brand-copy strong {
+				font-size: 12px;
+				font-weight: 900;
+				letter-spacing: 0.7px;
+			}
+
+			.hub-brand-copy span {
+				font-size: 9px;
+				font-weight: 700;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				color: #64748b;
+				margin-top: 4px;
+			}
+
+			.hub-main-nav {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+			}
+
+			.hub-main-nav a {
+				color: #475569;
+				text-decoration: none;
+				font-size: 10px;
+				font-weight: 800;
+				letter-spacing: 0.9px;
+				text-transform: uppercase;
+				padding: 10px 13px;
+				border-radius: 999px;
+				transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+			}
+
+			.hub-main-nav a:hover {
+				background: rgba(0, 148, 218, 0.08);
+				color: var(--ems-blue-dark);
+				transform: translateY(-1px);
+			}
+
+			.cinema-hero-stage {
+				min-height: calc(100vh - 72px);
+				background:
+					radial-gradient(circle at 82% 42%, rgba(0, 148, 218, 0.11) 0%, transparent 36%),
+					radial-gradient(circle at 8% 92%, rgba(0, 59, 115, 0.055) 0%, transparent 32%),
+					linear-gradient(135deg, #fcfdfd 0%, #f7fbff 54%, #fcfdfd 100%);
+			}
+
+			.cinema-hero-stage::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background-image:
+					linear-gradient(rgba(0, 59, 115, 0.025) 1px, transparent 1px),
+					linear-gradient(90deg, rgba(0, 59, 115, 0.025) 1px, transparent 1px);
+				background-size: 44px 44px;
+				mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 78%);
+				-webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 78%);
+				pointer-events: none;
+			}
+
+			.stage-header {
+				padding-bottom: 18px;
+				border-bottom: 1px solid rgba(0, 59, 115, 0.07);
+			}
+
+			/* Nome do speaker discretamente abaixo do conteúdo do vídeo */
+			.ep-speaker-name {
+				display: inline-flex;
+				align-items: center;
+				gap: 7px;
+				margin-top: 9px;
+				font-size: 10px;
+				font-weight: 700;
+				letter-spacing: 0.15px;
+				color: rgba(226, 232, 240, 0.72);
+			}
+
+			.ep-speaker-name::before {
+				content: '';
+				width: 5px;
+				height: 5px;
+				border-radius: 50%;
+				background: #0094da;
+				box-shadow: 0 0 8px rgba(0, 148, 218, 0.55);
+				flex: 0 0 auto;
+			}
+
+			/* Agenda unificada: todos os eventos no mesmo sistema visual claro */
+			.cal-events-list {
+				gap: 20px;
+			}
+
+			.cal-event-card {
+				display: grid;
+				grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.35fr);
+				min-height: 230px;
+				background: rgba(255, 255, 255, 0.96);
+				border: 1px solid rgba(0, 148, 218, 0.14);
+				border-radius: 22px;
+				overflow: hidden;
+				box-shadow: 0 12px 34px rgba(0, 59, 115, 0.055);
+				transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+			}
+
+			.cal-event-card:hover {
+				transform: translateY(-4px);
+				border-color: rgba(0, 148, 218, 0.34);
+				box-shadow: 0 18px 42px rgba(0, 59, 115, 0.10);
+			}
+
+			.cal-event-media {
+				position: relative;
+				min-height: 230px;
+				background: #eef5fb;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+				border-right: 1px solid rgba(0, 59, 115, 0.06);
+			}
+
+			.cal-event-media img {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				inset: 0;
+				object-fit: contain;
+				background: #f4f8fb;
+				transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			.cal-event-card:hover .cal-event-media img {
+				transform: scale(1.025);
+			}
+
+			.cal-event-content {
+				padding: 28px 30px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				min-width: 0;
+			}
+
+			.cal-event-meta-row {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 14px;
+				margin-bottom: 15px;
+				flex-wrap: wrap;
+			}
+
+			.cal-event-date-chip {
+				display: inline-flex;
+				align-items: baseline;
+				gap: 8px;
+				padding: 8px 12px;
+				background: #f2f7fc;
+				border: 1px solid rgba(0, 148, 218, 0.13);
+				border-radius: 12px;
+				color: var(--ems-blue-dark);
+			}
+
+			.cal-event-date-chip strong {
+				font-size: 18px;
+				font-weight: 900;
+				line-height: 1;
+			}
+
+			.cal-event-date-chip span {
+				font-size: 9px;
+				font-weight: 800;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: #64748b;
+			}
+
+			.cal-event-type {
+				display: inline-flex;
+				align-items: center;
+				padding: 6px 10px;
+				border-radius: 999px;
+				background: rgba(0, 148, 218, 0.08);
+				color: #0079b7;
+				font-size: 9px;
+				font-weight: 800;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				white-space: nowrap;
+			}
+
+			.cal-event-card.is-future .cal-event-type {
+				background: rgba(0, 59, 115, 0.07);
+				color: #003b73;
+			}
+
+			.cal-event-content h3 {
+				font-size: clamp(18px, 2.1vw, 22px);
+				font-weight: 900;
+				line-height: 1.25;
+				letter-spacing: -0.45px;
+				color: #003b73;
+				margin: 0 0 8px;
+			}
+
+			.cal-event-content p {
+				font-size: 13px;
+				line-height: 1.55;
+				color: #64748b;
+				margin: 0 0 10px;
+				max-width: 650px;
+			}
+
+			.cal-event-location {
+				font-size: 11px;
+				font-weight: 700;
+				color: #258091;
+				margin-bottom: 18px;
+			}
+
+			.cal-event-action {
+				align-self: flex-start;
+				display: inline-flex;
+				align-items: center;
+				padding: 11px 18px;
+				border-radius: 999px;
+				background: #003b73;
+				color: #ffffff;
+				text-decoration: none;
+				font-size: 10px;
+				font-weight: 800;
+				letter-spacing: 0.8px;
+				text-transform: uppercase;
+				transition: background 0.25s ease, transform 0.25s ease;
+			}
+
+			.cal-event-action:hover {
+				background: #0094da;
+				transform: translateY(-1px);
+			}
+
+			.cal-event-card.is-future .cal-event-content {
+				justify-content: center;
+			}
+
+			.cal-empty-state {
+				text-align: center;
+				padding: 42px 24px;
+				background: #ffffff;
+				border: 1px solid rgba(0, 148, 218, 0.12);
+				border-radius: 18px;
+				color: #94a3b8;
+				font-size: 13px;
+			}
+
+			@media (max-width: 900px) {
+				.hub-site-header-inner {
+					height: auto;
+					min-height: 68px;
+					padding: 12px 18px;
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 10px;
+				}
+
+				.hub-main-nav {
+					width: 100%;
+					overflow-x: auto;
+					padding-bottom: 2px;
+					scrollbar-width: none;
+				}
+
+				.hub-main-nav::-webkit-scrollbar { display: none; }
+
+				.hub-main-nav a {
+					padding: 8px 10px;
+					flex: 0 0 auto;
+				}
+
+				.cinema-hero-stage {
+					min-height: auto;
+				}
+
+				.cal-event-card {
+					grid-template-columns: 1fr;
+				}
+
+				.cal-event-media {
+					min-height: 210px;
+					border-right: none;
+					border-bottom: 1px solid rgba(0, 59, 115, 0.06);
+				}
+
+				.cal-event-content {
+					padding: 22px;
+				}
+			}
+
+
+			/* ═══════════════════════════════════════════
+			   REFINO VISUAL 2 — LIGHT / EDITORIAL / APPLE-INSPIRED
+			   ═══════════════════════════════════════════ */
+			:root {
+				--hub-ink: #10213a;
+				--hub-muted: #667085;
+				--hub-line: rgba(32, 79, 116, 0.10);
+				--hub-blue: #087fb8;
+				--hub-blue-soft: #e9f6fb;
+				--hub-ice: #f5f9fc;
+				--hub-lilac: #eef0fb;
+				--hub-surface: rgba(255, 255, 255, 0.86);
+			}
+
+			body {
+				background: #f6f8fa;
+			}
+
+			/* Header flutuante: menor, mais leve e sem marca secundária */
+			.hub-site-header {
+				position: sticky;
+				top: 12px;
+				z-index: 1200;
+				background: transparent;
+				border: 0;
+				box-shadow: none;
+				padding: 0 18px;
+			}
+
+			.hub-site-header-inner {
+				max-width: 1120px;
+				height: 60px;
+				margin: 0 auto;
+				padding: 0 16px 0 19px;
+				border-radius: 22px;
+				background: rgba(255, 255, 255, 0.82);
+				backdrop-filter: blur(22px) saturate(145%);
+				-webkit-backdrop-filter: blur(22px) saturate(145%);
+				border: 1px solid rgba(255, 255, 255, 0.92);
+				box-shadow: 0 14px 38px rgba(32, 72, 105, 0.10), inset 0 0 0 1px rgba(40, 84, 118, 0.05);
+			}
+
+			.hub-brand {
+				gap: 9px;
+				color: var(--hub-ink);
+			}
+
+			.hub-brand strong {
+				font-size: 13px;
+				font-weight: 800;
+				letter-spacing: -0.2px;
+			}
+
+			.hub-brand-mark {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, #37b8dc 0%, #087fb8 52%, #5866a8 100%);
+				box-shadow: 0 0 0 5px rgba(8, 127, 184, 0.08), 0 4px 12px rgba(8, 127, 184, 0.22);
+			}
+
+			.hub-brand-mark::after { display: none; }
+
+			.hub-main-nav {
+				gap: 2px;
+				padding: 4px;
+				border-radius: 16px;
+				background: rgba(245, 248, 251, 0.72);
+			}
+
+			.hub-main-nav a {
+				font-size: 10px;
+				font-weight: 700;
+				letter-spacing: 0;
+				text-transform: none;
+				padding: 8px 12px;
+				border-radius: 12px;
+				color: #596779;
+			}
+
+			.hub-main-nav a:hover {
+				background: #ffffff;
+				color: var(--hub-ink);
+				box-shadow: 0 5px 14px rgba(35, 70, 100, 0.08);
+				transform: none;
+			}
+
+			/* Hero: mantém estrutura, mas com acabamento mais editorial */
+			.cinema-hero-stage {
+				margin-top: -60px;
+				padding-top: 118px;
+				min-height: 100vh;
+				background:
+					radial-gradient(circle at 78% 38%, rgba(42, 170, 211, 0.13) 0%, transparent 34%),
+					radial-gradient(circle at 12% 78%, rgba(92, 104, 168, 0.08) 0%, transparent 30%),
+					linear-gradient(145deg, #ffffff 0%, #f7fbfd 54%, #f3f6fb 100%);
+				border-radius: 0 0 42px 42px;
+			}
+
+			.cinema-hero-stage::before {
+				opacity: 0.45;
+				background-size: 64px 64px;
+			}
+
+			.stage-header {
+				padding-bottom: 15px;
+				border-bottom: 1px solid rgba(32, 79, 116, 0.08);
+			}
+
+			.flag-badge {
+				display: inline-flex;
+				align-items: center;
+				min-height: 30px;
+				padding: 0 12px;
+				border: 1px solid rgba(8, 127, 184, 0.12);
+				border-left: 1px solid rgba(8, 127, 184, 0.12);
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.66);
+				backdrop-filter: blur(10px);
+				letter-spacing: 1.1px;
+			}
+
+			.portal-tag { opacity: 0.46; }
+
+			.text-panel h1 {
+				font-size: clamp(46px, 5vw, 66px);
+				letter-spacing: -2.6px;
+				line-height: 0.98;
+			}
+
+			.btn-fluid-cta {
+				background: #102f4c;
+				box-shadow: 0 12px 28px rgba(16, 47, 76, 0.16);
+			}
+
+			/* Portfólio e ecossistema: mais respiro e superfícies mais suaves */
+			.constellation-stage {
+				background:
+					radial-gradient(ellipse 55% 45% at 16% 28%, rgba(37, 128, 145, 0.08) 0%, transparent 68%),
+					linear-gradient(180deg, #f7f9fb 0%, #ffffff 100%);
+			}
+
+			.constellation-header h2,
+			.eco-header h2,
+			.cal-header h2 {
+				letter-spacing: -1.5px;
+				color: var(--hub-ink);
+			}
+
+			.eco-stage {
+				background:
+					radial-gradient(circle at 82% 18%, rgba(74, 178, 210, 0.09) 0%, transparent 28%),
+					linear-gradient(180deg, #ffffff 0%, #f3f8fb 100%);
+			}
+
+			.eco-showcase-stage {
+				border-radius: 32px;
+				background: rgba(255,255,255,0.80);
+				border: 1px solid rgba(255,255,255,0.95);
+				box-shadow: 0 26px 70px rgba(35, 72, 101, 0.09);
+			}
+
+			/* Cine Metabólica agora clara, mantendo a mesma estrutura e navegação */
+			.cine-stage {
+				padding: 90px 0 105px;
+				background:
+					radial-gradient(ellipse 65% 38% at 50% 0%, rgba(0, 148, 218, 0.10) 0%, transparent 70%),
+					radial-gradient(ellipse 38% 32% at 90% 72%, rgba(88, 102, 168, 0.08) 0%, transparent 70%),
+					#f7f9fc;
+				color: var(--hub-ink);
+			}
+
+			.cine-portal-bg {
+				background:
+					radial-gradient(ellipse 70% 42% at 48% 100%, rgba(0, 148, 218, 0.10) 0%, transparent 68%),
+					radial-gradient(ellipse 38% 34% at 16% 22%, rgba(37, 128, 145, 0.07) 0%, transparent 65%),
+					transparent;
+			}
+
+			.cine-beam {
+				height: 34%;
+				background: linear-gradient(to top, rgba(0, 148, 218, 0.10) 0%, rgba(32, 255, 255, 0.025) 42%, transparent 82%);
+				filter: blur(62px);
+				opacity: 0.75;
+			}
+
+			.cine-topbar .eyebrow {
+				color: #087fb8;
+				text-shadow: none;
+				background: rgba(255,255,255,0.74);
+				border: 1px solid rgba(8,127,184,0.12);
+				border-radius: 999px;
+				padding: 7px 14px;
+				letter-spacing: 1.6px;
+			}
+
+			.cine-topbar h2,
+			.cine-block-title h3,
+			.cine-section-title {
+				color: var(--hub-ink);
+			}
+
+			.cine-topbar h2 {
+				letter-spacing: -2px;
+			}
+
+			.cine-topbar p,
+			.cine-episode-meta p {
+				color: #687588;
+			}
+
+			.cine-block-title {
+				border-bottom-color: rgba(32, 79, 116, 0.10);
+			}
+
+			.cine-section-title::before {
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: #1c96c5;
+				box-shadow: 0 0 0 5px rgba(28, 150, 197, 0.09);
+			}
+
+			.cine-track-netflix {
+				gap: 16px;
+				padding: 10px 5px 28px;
+			}
+
+			.cine-episode {
+				flex-basis: min(300px, 78vw);
+				padding: 8px;
+				border-radius: 20px;
+				background: rgba(255,255,255,0.82);
+				border: 1px solid rgba(32, 79, 116, 0.08);
+				box-shadow: 0 12px 34px rgba(35, 72, 101, 0.07);
+				backdrop-filter: blur(14px);
+			}
+
+			.cine-episode:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 22px 46px rgba(35, 72, 101, 0.12);
+			}
+
+			.cine-episode-visual {
+				height: 170px;
+				border-radius: 14px;
+				border: 0;
+				background: linear-gradient(135deg, #e8f3f8 0%, #eef0f8 100%);
+			}
+
+			.cine-episode-visual .ep-glow {
+				background: linear-gradient(to top, rgba(9, 90, 128, 0.28), transparent);
+				height: 46%;
+			}
+
+			.cine-episode-visual::before {
+				color: rgba(255,255,255,0.30);
+			}
+
+			.cine-episode-meta {
+				padding: 15px 9px 10px;
+			}
+
+			.cine-episode-meta h4 {
+				color: var(--hub-ink);
+				font-size: 15px;
+				letter-spacing: -0.18px;
+			}
+
+			.cine-episode-meta .ep-time {
+				color: #087fb8;
+			}
+
+			.ep-speaker-name {
+				color: #607083;
+				font-weight: 700;
+			}
+
+			.ep-speaker-name::before {
+				box-shadow: none;
+				background: #36a8cf;
+			}
+
+			.cine-arrow-nav {
+				background: rgba(255,255,255,0.92);
+				color: var(--hub-ink);
+				border-color: rgba(32, 79, 116, 0.10);
+				box-shadow: 0 10px 28px rgba(35, 72, 101, 0.11);
+			}
+
+			.cine-arrow-nav:hover {
+				background: #ffffff;
+				color: #087fb8;
+				border-color: rgba(8, 127, 184, 0.24);
+				box-shadow: 0 14px 32px rgba(35, 72, 101, 0.14);
+			}
+
+			/* Eventos: bento editorial claro, imagem forte e metadados flutuantes */
+			.cal-stage-light {
+				padding: 100px 6% 110px;
+				background:
+					radial-gradient(circle at 12% 12%, rgba(66, 174, 210, 0.10) 0%, transparent 24%),
+					radial-gradient(circle at 88% 34%, rgba(94, 106, 174, 0.09) 0%, transparent 27%),
+					linear-gradient(180deg, #f7fafc 0%, #eef4f8 100%);
+			}
+
+			.cal-header {
+				max-width: 760px;
+				margin-bottom: 34px;
+			}
+
+			.cal-header .eyebrow {
+				color: #087fb8;
+				background: rgba(255,255,255,0.72);
+				border-color: rgba(8,127,184,0.12);
+				box-shadow: none;
+				letter-spacing: 1.5px;
+			}
+
+			.cal-header h2 {
+				font-size: clamp(36px, 5vw, 54px);
+				letter-spacing: -2.2px;
+				margin-bottom: 12px;
+			}
+
+			.cal-controls-bar {
+				max-width: 1020px;
+				margin: 0 auto 34px;
+				padding: 10px;
+				border-radius: 22px;
+				background: rgba(255,255,255,0.72);
+				backdrop-filter: blur(18px);
+				-webkit-backdrop-filter: blur(18px);
+				border: 1px solid rgba(255,255,255,0.92);
+				box-shadow: 0 16px 42px rgba(35, 72, 101, 0.08);
+			}
+
+			.month-btn,
+			.type-btn {
+				text-transform: none;
+				letter-spacing: 0;
+				font-weight: 700;
+				border-radius: 14px;
+			}
+
+			.month-btn.is-active {
+				background: #ffffff;
+				color: var(--hub-ink);
+				box-shadow: 0 5px 16px rgba(35,72,101,0.10);
+			}
+
+			.type-btn {
+				background: transparent;
+				border-color: transparent;
+			}
+
+			.type-btn.is-active {
+				background: #e8f4f9;
+				color: #087fb8;
+				border-color: rgba(8,127,184,0.10);
+			}
+
+			.cal-events-list {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 22px;
+				max-width: 1080px;
+				margin: 0 auto;
+			}
+
+			.cal-event-card {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				min-height: 0;
+				background: rgba(255,255,255,0.88);
+				border: 1px solid rgba(255,255,255,0.95);
+				border-radius: 28px;
+				overflow: hidden;
+				box-shadow: 0 18px 54px rgba(35, 72, 101, 0.09);
+				isolation: isolate;
+			}
+
+			.cal-event-card::before {
+				content: '';
+				position: absolute;
+				inset: 0 0 auto 0;
+				height: 3px;
+				background: linear-gradient(90deg, #36a8cf 0%, #6d79b7 58%, #b9c8df 100%);
+				z-index: 5;
+			}
+
+			.cal-event-card:hover {
+				transform: translateY(-7px);
+				border-color: rgba(255,255,255,1);
+				box-shadow: 0 28px 66px rgba(35, 72, 101, 0.14);
+			}
+
+			.cal-event-media {
+				position: relative;
+				min-height: 0;
+				aspect-ratio: 16 / 9.8;
+				border: 0;
+				border-bottom: 1px solid rgba(32,79,116,0.07);
+				background: linear-gradient(135deg, #edf6fa 0%, #eff1f8 100%);
+			}
+
+			.cal-event-media::after {
+				content: '';
+				position: absolute;
+				inset: auto 0 0 0;
+				height: 38%;
+				background: linear-gradient(to top, rgba(16, 33, 58, 0.08), transparent);
+				pointer-events: none;
+			}
+
+			.cal-event-media img {
+				object-fit: cover;
+				background: transparent;
+			}
+
+			.cal-event-card:hover .cal-event-media img {
+				transform: scale(1.045);
+			}
+
+			.cal-event-content {
+				padding: 0 24px 24px;
+				justify-content: flex-start;
+				flex: 1;
+			}
+
+			.cal-event-meta-row {
+				position: relative;
+				z-index: 8;
+				margin: -32px 0 20px;
+				align-items: flex-end;
+			}
+
+			.cal-event-date-chip {
+				min-width: 82px;
+				min-height: 66px;
+				padding: 11px 13px;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: center;
+				gap: 3px;
+				background: rgba(255,255,255,0.94);
+				backdrop-filter: blur(16px);
+				-webkit-backdrop-filter: blur(16px);
+				border: 1px solid rgba(255,255,255,0.98);
+				border-radius: 18px;
+				box-shadow: 0 12px 28px rgba(35,72,101,0.14);
+			}
+
+			.cal-event-date-chip strong {
+				font-size: 21px;
+				letter-spacing: -0.8px;
+				color: var(--hub-ink);
+			}
+
+			.cal-event-date-chip span {
+				color: #738196;
+				letter-spacing: 0.65px;
+			}
+
+			.cal-event-type {
+				margin-bottom: 7px;
+				padding: 8px 11px;
+				background: rgba(255,255,255,0.88);
+				backdrop-filter: blur(14px);
+				-webkit-backdrop-filter: blur(14px);
+				border: 1px solid rgba(255,255,255,0.96);
+				color: #456079;
+				box-shadow: 0 8px 20px rgba(35,72,101,0.10);
+			}
+
+			.cal-event-card.is-future .cal-event-type {
+				background: rgba(234, 246, 251, 0.94);
+				color: #087fb8;
+			}
+
+			.cal-event-content h3 {
+				font-size: clamp(20px, 2vw, 25px);
+				line-height: 1.15;
+				letter-spacing: -0.8px;
+				color: var(--hub-ink);
+				margin-bottom: 10px;
+			}
+
+			.cal-event-content p {
+				font-size: 13px;
+				line-height: 1.62;
+				color: #69778a;
+			}
+
+			.cal-event-location {
+				margin-top: 2px;
+				color: #3f7f93;
+			}
+
+			.cal-event-action {
+				margin-top: auto;
+				padding: 11px 16px;
+				background: #f0f6f9;
+				color: #176c90;
+				border: 1px solid rgba(8,127,184,0.10);
+				text-transform: none;
+				letter-spacing: 0;
+				font-weight: 800;
+			}
+
+			.cal-event-action:hover {
+				background: #e5f2f7;
+				color: #0f5e80;
+			}
+
+			@media (max-width: 900px) {
+				.hub-site-header {
+					top: 8px;
+					padding: 0 10px;
+				}
+
+				.hub-site-header-inner {
+					height: auto;
+					min-height: 58px;
+					padding: 10px 12px;
+					border-radius: 19px;
+					align-items: center;
+					flex-direction: row;
+					gap: 10px;
+				}
+
+				.hub-main-nav {
+					margin-left: auto;
+					max-width: 68%;
+					overflow-x: auto;
+					justify-content: flex-start;
+				}
+
+				.hub-main-nav a {
+					flex: 0 0 auto;
+					padding: 7px 10px;
+				}
+
+				.cinema-hero-stage {
+					margin-top: -58px;
+					padding-top: 108px;
+					border-radius: 0 0 28px 28px;
+				}
+
+				.cine-stage,
+				.cal-stage-light {
+					padding-top: 74px;
+					padding-bottom: 82px;
+				}
+
+				.cal-events-list {
+					grid-template-columns: 1fr;
+				}
+
+				.cal-controls-bar {
+					align-items: stretch;
+				}
+			}
+
+			@media (max-width: 620px) {
+				.hub-brand strong { font-size: 12px; }
+				.hub-main-nav { max-width: 64%; }
+				.hub-main-nav a { font-size: 9px; padding: 7px 9px; }
+				.text-panel h1 { font-size: 42px; }
+				.cal-event-content { padding: 0 18px 20px; }
+				.cal-event-date-chip { min-width: 74px; min-height: 62px; }
+			}
+
+
+			/* ═══════════════════════════════════════════
+			   AJUSTE FINAL — CINE NETFLIX + EVENTOS EM BANNER
+			   ═══════════════════════════════════════════ */
+
+			/* CINE METABÓLICA: volta à atmosfera cinematográfica escura,
+			   com cards minimalistas e sem caixas claras externas. */
+			.cine-stage {
+				padding: 84px 0 100px;
+				background:
+					radial-gradient(ellipse 72% 44% at 50% 100%, rgba(0, 148, 218, 0.20) 0%, transparent 62%),
+					radial-gradient(ellipse 42% 35% at 12% 22%, rgba(37, 128, 145, 0.13) 0%, transparent 58%),
+					radial-gradient(ellipse 46% 38% at 88% 18%, rgba(45, 55, 102, 0.24) 0%, transparent 60%),
+					#05070d;
+				color: #f8fafc;
+			}
+
+			.cine-portal-bg {
+				background:
+					radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 148, 218, 0.18) 0%, transparent 62%),
+					radial-gradient(ellipse 50% 40% at 20% 30%, rgba(37, 128, 145, 0.11) 0%, transparent 58%),
+					radial-gradient(ellipse 50% 40% at 80% 28%, rgba(45, 55, 102, 0.20) 0%, transparent 58%),
+					transparent;
+			}
+
+			.cine-beam {
+				height: 52%;
+				background: linear-gradient(to top, rgba(0, 148, 218, 0.34) 0%, rgba(32, 255, 255, 0.06) 42%, transparent 80%);
+				filter: blur(52px);
+				opacity: 0.82;
+			}
+
+			.cine-topbar .eyebrow {
+				color: #20ffff;
+				background: transparent;
+				border: 0;
+				padding: 0;
+				letter-spacing: 2.7px;
+				text-shadow: 0 0 14px rgba(32,255,255,0.38);
+			}
+
+			.cine-topbar h2,
+			.cine-block-title h3,
+			.cine-section-title {
+				color: #ffffff;
+			}
+
+			.cine-topbar h2 { letter-spacing: -1.6px; }
+
+			.cine-topbar p {
+				color: rgba(226, 232, 240, 0.64);
+			}
+
+			.cine-block-title {
+				border-bottom-color: rgba(0, 148, 218, 0.24);
+			}
+
+			.cine-section-title::before {
+				width: 4px;
+				height: 20px;
+				border-radius: 3px;
+				background: #0094da;
+				box-shadow: 0 0 12px rgba(32,255,255,0.72);
+			}
+
+			.cine-track-netflix {
+				gap: 18px;
+				padding: 10px 4px 22px;
+			}
+
+			.cine-episode {
+				flex-basis: min(290px, 75vw);
+				padding: 0;
+				border-radius: 0;
+				background: transparent;
+				border: 0;
+				box-shadow: none;
+				backdrop-filter: none;
+			}
+
+			.cine-episode:hover {
+				transform: translateY(-8px) scale(1.018);
+				box-shadow: none;
+			}
+
+			.cine-episode-visual {
+				height: 165px;
+				border-radius: 9px;
+				border: 1px solid rgba(255,255,255,0.09);
+				background: linear-gradient(135deg, #0d1320 0%, #171f2e 100%);
+				box-shadow: 0 12px 32px rgba(0,0,0,0.26);
+			}
+
+			.cine-episode:hover .cine-episode-visual {
+				border-color: rgba(0,148,218,0.54);
+				box-shadow: 0 18px 38px rgba(0,0,0,0.34), 0 0 24px rgba(0,148,218,0.09);
+			}
+
+			.cine-episode-visual .ep-glow {
+				height: 62%;
+				background: linear-gradient(to top, rgba(0, 81, 122, 0.52), transparent);
+			}
+
+			.cine-episode-visual::before {
+				color: rgba(255,255,255,0.08);
+			}
+
+			.cine-episode-meta {
+				padding: 13px 3px 3px;
+			}
+
+			.cine-episode-meta .ep-time {
+				color: #18a8e0;
+			}
+
+			.cine-episode-meta h4 {
+				color: #ffffff;
+				font-size: 15px;
+				letter-spacing: -0.1px;
+			}
+
+			.cine-episode-meta p {
+				color: rgba(203, 213, 225, 0.58);
+			}
+
+			.ep-speaker-name {
+				color: rgba(226,232,240,0.70);
+				font-weight: 700;
+			}
+
+			.ep-speaker-name::before {
+				background: #0094da;
+				box-shadow: 0 0 8px rgba(0,148,218,0.55);
+			}
+
+			.cine-arrow-nav {
+				background: rgba(4, 9, 20, 0.78);
+				color: #ffffff;
+				border-color: rgba(0,148,218,0.28);
+				box-shadow: 0 10px 26px rgba(0,0,0,0.28);
+			}
+
+			.cine-arrow-nav:hover {
+				background: #0094da;
+				color: #ffffff;
+				border-color: rgba(32,255,255,0.62);
+				box-shadow: 0 0 22px rgba(0,148,218,0.42);
+			}
+
+			/* EVENTOS: banners padronizados, mais finos e com o mesmo box informativo para todos. */
+			.cal-stage-light {
+				padding: 96px 6% 112px;
+				background:
+					radial-gradient(circle at 10% 8%, rgba(75, 184, 218, 0.09) 0%, transparent 25%),
+					radial-gradient(circle at 92% 48%, rgba(98, 111, 180, 0.07) 0%, transparent 28%),
+					linear-gradient(180deg, #fbfcfd 0%, #f0f5f8 100%);
+			}
+
+			.cal-events-list {
+				display: flex;
+				flex-direction: column;
+				gap: 22px;
+				max-width: 1120px;
+				margin: 0 auto;
+			}
+
+			.cal-event-card {
+				position: relative;
+				display: block;
+				min-height: 284px;
+				aspect-ratio: 16 / 4.35;
+				border-radius: 28px;
+				overflow: hidden;
+				background: #eaf1f5;
+				border: 1px solid rgba(255,255,255,0.95);
+				box-shadow: 0 20px 54px rgba(30, 65, 91, 0.11);
+				isolation: isolate;
+				transition: transform 0.35s ease, box-shadow 0.35s ease;
+			}
+
+			.cal-event-card::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(90deg, rgba(12,29,46,0.08) 0%, rgba(12,29,46,0.02) 34%, rgba(255,255,255,0.02) 100%);
+				z-index: 2;
+				pointer-events: none;
+			}
+
+			.cal-event-card:hover {
+				transform: translateY(-6px);
+				box-shadow: 0 30px 72px rgba(30, 65, 91, 0.16);
+			}
+
+			.cal-event-media {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				background: #eef4f7;
+				z-index: 1;
+			}
+
+			.cal-event-media::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(90deg, rgba(239,246,250,0.10) 0%, rgba(239,246,250,0.03) 42%, transparent 78%);
+				pointer-events: none;
+			}
+
+			.cal-event-media img {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+				background: transparent;
+				transition: transform 0.45s ease;
+			}
+
+			.cal-event-card:hover .cal-event-media img {
+				transform: scale(1.025);
+			}
+
+			.cal-event-content,
+			.cal-event-card.is-future .cal-event-content {
+				position: absolute;
+				z-index: 5;
+				left: 24px;
+				top: 24px;
+				bottom: 24px;
+				width: min(43%, 450px);
+				max-width: calc(100% - 48px);
+				padding: 22px 22px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				background: rgba(255,255,255,0.86);
+				backdrop-filter: blur(18px) saturate(120%);
+				-webkit-backdrop-filter: blur(18px) saturate(120%);
+				border: 1px solid rgba(255,255,255,0.93);
+				border-radius: 20px;
+				box-shadow: 0 14px 34px rgba(25, 62, 89, 0.10);
+			}
+
+			.cal-event-meta-row,
+			.cal-event-card.is-future .cal-event-meta-row {
+				position: static;
+				z-index: auto;
+				margin: 0 0 14px;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.cal-event-date-chip {
+				min-width: 0;
+				min-height: 0;
+				padding: 8px 10px;
+				flex-direction: row;
+				align-items: baseline;
+				gap: 7px;
+				background: rgba(238,246,250,0.92);
+				border: 1px solid rgba(8,127,184,0.10);
+				border-radius: 12px;
+				box-shadow: none;
+			}
+
+			.cal-event-date-chip strong {
+				font-size: 17px;
+				letter-spacing: -0.4px;
+			}
+
+			.cal-event-type,
+			.cal-event-card.is-future .cal-event-type {
+				margin: 0;
+				padding: 7px 10px;
+				background: rgba(255,255,255,0.76);
+				border: 1px solid rgba(32,79,116,0.09);
+				color: #486276;
+				box-shadow: none;
+			}
+
+			.cal-event-content h3 {
+				font-size: clamp(20px, 1.8vw, 25px);
+				line-height: 1.12;
+				letter-spacing: -0.75px;
+				color: #10213a;
+				margin-bottom: 8px;
+			}
+
+			.cal-event-content p {
+				font-size: 12.5px;
+				line-height: 1.52;
+				color: #667588;
+				margin-bottom: 9px;
+			}
+
+			.cal-event-location {
+				font-size: 10.5px;
+				color: #3d7d91;
+				margin-bottom: 14px;
+			}
+
+			.cal-event-action {
+				align-self: flex-start;
+				margin-top: 0;
+				padding: 10px 15px;
+				background: #0d3656;
+				color: #ffffff;
+				border: 0;
+				border-radius: 999px;
+			}
+
+			.cal-event-action:hover {
+				background: #087fb8;
+				color: #ffffff;
+			}
+
+			@media (max-width: 900px) {
+				.cine-stage { padding-top: 76px; padding-bottom: 86px; }
+
+				.cal-event-card {
+					aspect-ratio: auto;
+					min-height: 410px;
+					border-radius: 24px;
+				}
+
+				.cal-event-content,
+				.cal-event-card.is-future .cal-event-content {
+					left: 18px;
+					right: 18px;
+					top: auto;
+					bottom: 18px;
+					width: auto;
+					max-width: none;
+					padding: 20px;
+				}
+			}
+
+			@media (max-width: 620px) {
+				.cine-episode { flex-basis: min(280px, 82vw); }
+				.cal-event-card { min-height: 380px; }
+				.cal-event-content { padding: 17px; }
+				.cal-event-meta-row { gap: 8px; }
+				.cal-event-type { white-space: normal; line-height: 1.25; }
+			}
+
 		</style>
 	</head>
 
 	<body>
 
+		<header class="hub-site-header">
+			<div class="hub-site-header-inner">
+				<a class="hub-brand" href="#" aria-label="Hub Metabólica">
+					<span class="hub-brand-mark" aria-hidden="true"></span>
+					<strong>Hub Metabólica</strong>
+				</a>
+
+				<nav class="hub-main-nav" aria-label="Navegação principal">
+					<a href="#modulo-portfolio">Portfólio</a>
+					<a href="#cine-metabolica">Cine Metabólica</a>
+					<a href="#ecossistema-ems">Ecossistema</a>
+					<a href="#agenda-eventos-ems">Eventos</a>
+				</nav>
+			</div>
+		</header>
+
+
 		<section class="cinema-hero-stage">
 			<!-- Header -->
 			<header class="stage-header">
 				<div class="flag-badge">EMS: É DO BRASIL, PARA O MUNDO.</div>
-				<div class="portal-tag">MÉDICO EXPONENCIAL • HUB METABÓLICA</div>
+				<div class="portal-tag">HUB METABÓLICA</div>
 			</header>
 
 			<!-- Main Grid -->
@@ -1949,7 +3250,7 @@
 						<span>Em Suas Mãos.</span>
 					</h1>
 					<p>
-						Explore a potência científica do portfólio de Semaglutida e Liraglutida nacionais. Uma imersão interativa desenvolvida para apoiar a conduta médica com precisão, estabilidade e usabilidade terapêutica de ponta.
+						Uma experiência interativa que reúne conteúdo científico, treinamento prático e ferramentas clínicas para apoiar o manejo da obesidade e do DM2, explorando o portfólio de semaglutida e liraglutida da
 					</p>
 					<a href="#conteudos-exclusivos" class="btn-fluid-cta">
 						Acessar Conteúdos
@@ -1974,12 +3275,12 @@
 					</div>
 
 					<!-- O LEK ABRE DIRETAMENTE AO REDOR DO VÍDEO DA CANETA -->
-					<div class="hover-lek-menu">
+					<!-- <div class="hover-lek-menu">
 						<div class="lek-item lek-ozivy" onclick="document.getElementById('modulo-portfolio').scrollIntoView({behavior:'smooth'});">Ozivy <span>• Semaglutida</span></div>
 						<div class="lek-item lek-olire" onclick="document.getElementById('modulo-portfolio').scrollIntoView({behavior:'smooth'});">olire <span>• Liraglutida</span></div>
 						<div class="lek-item lek-lirux" onclick="document.getElementById('modulo-portfolio').scrollIntoView({behavior:'smooth'});">Lirux <span>• Inovação</span></div>
 						<div class="lek-item lek-glempa" onclick="document.getElementById('modulo-portfolio').scrollIntoView({behavior:'smooth'});">Glempa <span>• Em Breve</span></div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 
@@ -2006,7 +3307,7 @@
 
 			<header class="constellation-header">
 				<h2>Portfólio EMS</h2>
-				<p>Explore cada produto do ecossistema metabólico</p>
+				<!-- <p>Explore cada produto do ecossistema metabólico</p> -->
 			</header>
 
 			<div class="spotlight-stage" id="spotlightStage">
@@ -2039,25 +3340,23 @@
 			</div>
 		</section>
 
-		<!-- ═══════════════════════════════════════════
-     CINE METABÓLICA — ESTRUTURA DINÂMICA VIA JS
-═══════════════════════════════════════════ -->
-<section id="cine-metabolica" class="cine-stage">
-    <div class="cine-portal-bg"></div>
-    <div class="cine-beam"></div>
+		<!-- ═══════════════════════════════════════════ CINE METABÓLICA — ESTRUTURA DINÂMICA VIA JS ═══════════════════════════════════════════ -->
+		<section id="cine-metabolica" class="cine-stage">
+			<div class="cine-portal-bg"></div>
+			<div class="cine-beam"></div>
 
-    <div class="cine-container-netflix">
-        <!-- Intro Header -->
-        <header class="cine-topbar">
-            <span class="eyebrow">Cine Metabólica</span>
-            <h2>Análogos do GLP-1 na Prática</h2>
-            <p>Como tratar seu paciente no consultório. Ampliando o alcance do tratamento para multiespecialidades.</p>
-        </header>
+			<div class="cine-container-netflix">
+				<!-- Intro Header -->
+				<header class="cine-topbar">
+					<span class="eyebrow">Cine Metabólica</span>
+					<h2>Análogos do GLP-1 na Prática</h2>
+					<p>Acesse treinamentos, conteúdos científicos e ferramentas para ampliar seu conhecimento sobre Ozivy.</p>
+				</header>
 
-        <!-- Container onde o JavaScript vai injetar todos os blocos e trilhas -->
-        <div id="cineDynamicBlocks"></div>
-    </div>
-</section>
+				<!-- Container onde o JavaScript vai injetar todos os blocos e trilhas -->
+				<div id="cineDynamicBlocks"></div>
+			</div>
+		</section>
 
 		<section id="ecossistema-ems" class="eco-stage">
 			<div class="eco-aura"></div>
@@ -2117,41 +3416,41 @@
 		<!-- ═══════════════════════════════════════════
      MÓDULO: EVENTOS & COBERTURA CIENTÍFICA EMS
 ═══════════════════════════════════════════ -->
-<section id="agenda-eventos-ems" class="cal-stage-light">
-    <div class="cal-container">
+		<section id="agenda-eventos-ems" class="cal-stage-light">
+			<div class="cal-container">
 
-        <!-- Header Clean -->
-        <header class="cal-header">
-            <span class="eyebrow">Agenda & Cobertura Científica</span>
-            <h2>Calendário de Eventos</h2>
-            <p>Navegue pelos congressos internacionais e eventos proprietários. Acesse os artigos, destaques e fotos dos eventos que já aconteceram ou fique por dentro das próximas agendas.</p>
-        </header>
+				<!-- Header Clean -->
+				<header class="cal-header">
+					<span class="eyebrow">Agenda & Cobertura Científica</span>
+					<h2>Calendário de Eventos</h2>
+					<p>Acompanhe congressos internacionais e eventos da EMS. Acesse conteúdos, destaques e registros dos encontros já realizados ou explore as próximas agendas.</p>
+				</header>
 
-        <!-- Barra de Filtros e Meses -->
-        <div class="cal-controls-bar">
+				<!-- Barra de Filtros e Meses -->
+				<div class="cal-controls-bar">
 
-            <!-- Seletor de Meses -->
-            <div class="cal-month-selector" id="monthSelector">
-                <button class="month-btn is-active" onclick="filterByMonth('todos', this)">Todos os Meses</button>
-                <button class="month-btn" onclick="filterByMonth('maio', this)">Maio 2026</button>
-                <button class="month-btn" onclick="filterByMonth('junho', this)">Junho 2026</button>
-                <button class="month-btn" onclick="filterByMonth('setembro', this)">Setembro 2026</button>
-            </div>
+					<!-- Seletor de Meses -->
+					<div class="cal-month-selector" id="monthSelector">
+						<button class="month-btn is-active" onclick="filterByMonth('todos', this)">Todos os Meses</button>
+						<button class="month-btn" onclick="filterByMonth('maio', this)">Maio 2026</button>
+						<button class="month-btn" onclick="filterByMonth('junho', this)">Junho 2026</button>
+						<button class="month-btn" onclick="filterByMonth('setembro', this)">Setembro 2026</button>
+					</div>
 
-            <!-- Filtro de Tipo -->
-            <div class="cal-type-filter">
-                <button class="type-btn is-active" onclick="filterByType('todos', this)">Todos</button>
-                <button class="type-btn" onclick="filterByType('internacional', this)">Internacionais</button>
-                <button class="type-btn" onclick="filterByType('proprietario', this)">Eventos EMS</button>
-            </div>
-        </div>
+					<!-- Filtro de Tipo -->
+					<div class="cal-type-filter">
+						<button class="type-btn is-active" onclick="filterByType('todos', this)">Todos</button>
+						<button class="type-btn" onclick="filterByType('internacional', this)">Internacionais</button>
+						<button class="type-btn" onclick="filterByType('proprietario', this)">Eventos EMS</button>
+					</div>
+				</div>
 
-        <!-- Lista Estilo Calendário -->
-        <div class="cal-events-list" id="calEventsList">
-            <!-- Renderizado via JavaScript com a lógica invertida -->
-        </div>
-    </div>
-</section>
+				<!-- Lista Estilo Calendário -->
+				<div class="cal-events-list" id="calEventsList">
+					<!-- Renderizado via JavaScript com a lógica invertida -->
+				</div>
+			</div>
+		</section>
 
 		<script>
 			/* ═══════════════════════════════════════════
@@ -2159,10 +3458,11 @@
 			═══════════════════════════════════════════ */
 			const PRODUCT_IMAGE = 'Design sem nome (35).png';
 			const PRODUCT_IMAGE_lirux = 'lirux.png';
+			const PRODUCT_IMAGE_Ozivy = 'MOCKUP_CANETA_CAIXA_01.png';
 
 			const portfolio = [
-				{ id: 'ozivy', image: PRODUCT_IMAGE, name: 'Ozivy', molecule: 'Semaglutida', description: 'Tecnologia nacional com foco em adesão e estabilidade metabólica para o manejo de longo prazo.', claims: ['Adesão Semanal', 'Estabilidade Metabólica', 'Made in Brazil'], bula: '#bula-ozivy', teaser: false },
-				{ id: 'olire', image: PRODUCT_IMAGE, name: 'olire', molecule: 'Liraglutida', description: 'Consolidação clínica no controle crônico do peso corporal com titulação flexível de dose.', claims: ['Controle Crônico', 'Titulação Flexível', 'Saciedade Potente'], bula: '#bula-olire', teaser: false },
+				{ id: 'ozivy', image: PRODUCT_IMAGE_Ozivy, name: 'Ozivy', molecule: 'Semaglutida', description: 'Tecnologia nacional com foco em adesão e estabilidade metabólica para o manejo de longo prazo.', claims: ['Adesão Semanal', 'Estabilidade Metabólica', 'É do Brasil'], bula: '#bula-ozivy', teaser: false },
+				{ id: 'olire', image: PRODUCT_IMAGE, name: 'Olire', molecule: 'Liraglutida', description: 'Consolidação clínica no controle crônico do peso corporal com titulação flexível de dose.', claims: ['Controle Crônico', 'Titulação Flexível', 'Saciedade Potente'], bula: '#bula-olire', teaser: false },
 				{ id: 'lirux', image: PRODUCT_IMAGE_lirux, name: 'Lirux', molecule: 'Liraglutida', description: 'Engenharia molecular nacional direcionada ao estímulo potente da saciedade e estabilidade glicêmica.', claims: ['Saciedade Potente', 'Engenharia Nacional', 'Estabilidade Glicêmica'], bula: '#bula-lirux', teaser: false }
 			];
 
@@ -2327,304 +3627,286 @@ function scrollCineTrack(trackId, distance) {
 }
 
 /* ═══════════════════════════════════════════
-   CINE METABÓLICA — TODOS OS BLOCOS RENDERIZADOS VIA JS
+CINE METABÓLICA — TODOS OS BLOCOS RENDERIZADOS VIA JS
 ═══════════════════════════════════════════ */
 
 const cineBlocksData = [
-    {
-        blockTitle: "Informativos do Produto",
-        blockNum: "BLOCO 01",
-        sections: [
-            {
-                id: "rowModoUso",
-                title: "Modo de Uso",
-                speaker: null,
-                episodes: [
-                    { ep: "01", time: "08 min", title: "Passo a Passo de Aplicação da Caneta", desc: "Demonstração prática do manuseio para orientar seu paciente.", thumb: "Design sem nome (35).png", link: "#modo-de-uso-1" },
-                    { ep: "02", time: "05 min", title: "Primeira Aplicação & Dúvidas Frequentes", desc: "Cuidados iniciais na rotina de prescrição no consultório.", thumb: "Design sem nome (35).png", link: "#modo-de-uso-2" }
-                ]
-            },
-            // {
-            //     id: "rowOzivy",
-            //     title: "Diferenciais do Ozivy",
-            //     speaker: null,
-            //     episodes: [
-            //         { ep: "01", time: "12 min", title: "Tecnologia de Produção da Semaglutida", desc: "Engenharia molecular e controle de qualidade EMS.", thumb: "Design sem nome (35).png", link: "#ozivy-1" },
-            //         { ep: "02", time: "10 min", title: "Estabilidade & Tolerabilidade", desc: "Atributos focados em manter a adesão no longo prazo.", thumb: "Design sem nome (35).png", link: "#ozivy-2" }
-            //     ]
-            // },
-            {
-                id: "rowInst",
-                title: "Conteúdos Institucionais e Educacionais do Produto",
-                speaker: null,
-                episodes: [
-                    { ep: "01", time: "15 min", title: "Pioneirismo no Tratamento Metabólico Nacional", desc: "Materiais integrados para apoio e suporte na tomada de decisão.", thumb: "Design sem nome (35).png", link: "#inst-1" }
-                ]
-            }
-        ]
-    },
-    {
-        blockTitle: "Prática Clínica",
-        blockNum: "BLOCO 02",
-        sections: [
-            {
-                id: "rowHandsOn",
-                title: "Trilha Hands On",
-                speaker: {
-                    name: "Hands On Prescrição",
-                    role: "Prática Clínica",
-                    avatar: "Design sem nome (39).png",
-                    bullets: ["Titulação de Dose Prática", "Manejo de Colaterais", "Condução de Consultório"]
-                },
-                episodes: [
-                    { ep: "01", time: "18 min", title: "Titulação de Dose e Tolerabilidade Prática", desc: "Conduta para conduzir o paciente com segurança desde a 1ª semana.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-1" },
-                    { ep: "02", time: "18 min", title: "Ajustes Práticos de Dose em Protocolos", desc: "Manejo contínuo em pacientes com sensibilidade gastrointestinal.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-2" },
-                    { ep: "03", time: "18 min", title: "Estratégias de Manutenção e Adesão", desc: "Como manter o paciente motivado e engajado no tratamento.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-3" }
-                ]
-            },
-            {
-                id: "rowDraPaula",
-                title: "Trilha de Perda de Peso — Dra. Tassiane Alvarenga",
-                speaker: {
-                    name: "Dra. Paula Pires",
-                    role: "Endocrinologista",
-                    avatar: "Design sem nome (39).png",
-                    bullets: ["Comunicação Empática", "Adesão de Longo Prazo", "Manejo do Estigma do Peso"]
-                },
-                episodes: [
-                    { ep: "01", time: "20 min", title: "Comunicação e Adesão no Consultório", desc: "Empatia e fidelização da conduta na perda de peso.", thumb: "capa-tassi-perda-de-peso.png", link: "#paula-1" },
-                    { ep: "02", time: "20 min", title: "Abordagem do Peso e Ruído Mental", desc: "Técnicas de consulta para mitigar o estigma no atendimento.", thumb: "capa-tassi-perda-de-peso.png", link: "#paula-2" }
-                ]
-            },
-            {
-                id: "rowZagury",
-                title: "Endo Glass — Dr. Zagury",
-                speaker: {
-                    name: "Dr. Zagury",
-                    role: "Endocrinologista",
-                    avatar: "Design sem nome (39).png",
-                    bullets: ["Evidências Clínicas", "Fisiopatologia Metabólica", "Mecanismos Aprofundados"]
-                },
-                episodes: [
-                    { ep: "01", time: "25 min", title: "Análise Científica Aprofundada — Endo Glass", desc: "Análise cirúrgica dos dados dos ensaios clínicos e farmacoterapia.", thumb: "Design sem nome (35).png", link: "#zagury-1" },
-                    { ep: "02", time: "25 min", title: "Proteção Vascular e Mecanismos GLP-1", desc: "Estudo detalhado dos impactos endoteliais e fisiopatologia.", thumb: "Design sem nome (35).png", link: "#zagury-2" }
-                ]
-            }
-        ]
-    }
+	{
+		blockTitle: "Informativos do Produto",
+		blockNum: "BLOCO 01",
+		sections: [
+			{
+				id: "rowModoUso",
+				title: "Tudo sobre as canetas EMS",
+				speaker: null,
+				episodes: [
+					{ ep: "01", time: "Vídeo", title: "Vídeo de lançamento de Ozivy", desc: "Confira os melhores momentos do lançamento oficial da Caneta Azul do Brasil, Ozivy, no Roxy Dinner Show.", thumb: "", link: "#ozivy-lancamento" },
+					{ ep: "02", time: "Material", title: "Press KIT Ozivy", desc: "confira as informações essensciais para o tratamento do paciente metabólico com a semaglutida da EMS", thumb: "", link: "#ozivy-press-kit" },
+					{ ep: "03", time: "Vídeo", title: "Vídeo de aplicação - Ozivy", desc: "Confira o vídeo explicativo de aplicação da semaglutida do Brasil", thumb: "", link: "#ozivy-aplicacao" },
+					{ ep: "04", time: "Conteúdo", title: "Síntese peptídica", desc: "A tecnologia por trás da qualidade, estabilidade e eficácia no tratamento metabólico", thumb: "", link: "#sintese-peptidica" },
+					// { ep: "05", time: "08 min", title: "Passo a Passo de Aplicação da Caneta", desc: "Demonstração prática do manuseio para orientar seu paciente.", thumb: "Design sem nome (35).png", link: "#modo-de-uso-1" },
+					// { ep: "06", time: "05 min", title: "Primeira Aplicação & Dúvidas Frequentes", desc: "Cuidados iniciais na rotina de prescrição no consultório.", thumb: "Design sem nome (35).png", link: "#modo-de-uso-2" }
+				]
+			}
+		]
+	},
+	{
+		blockTitle: "Prática Clínica",
+		blockNum: "BLOCO 02",
+		sections: [
+			{
+				id: "rowHandsOn",
+				title: "Hands On de Semaglutida",
+				episodes: [
+					{ ep: "01", time: "Vídeo 1", title: "Obesidade e Era GLP-1: da Teoria à Prática Clínica", desc: "Treinamento sobre obesidade na era GLP-1: fisiopatologia, uso dos análogos, impacto além do peso, adesão, estilo de vida e benefícios metabólicos e cardiovasculares.", thumb: "", link: "#tassi-obesidade-1", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "02", time: "Vídeo 2", title: "Hands On: prescrição de aGLP-1 na prática", desc: "Treinamento clínico sobre tratamento da obesidade com liraglutida e semaglutida, focado em escolha de medicação, fenótipos, titulação de dose e casos clínicos práticos.", thumb: "", link: "#tassi-obesidade-2", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "03", time: "Vídeo 3", title: "Manejo de efeitos colaterais e preservação de massa magra", desc: "Dra. Tassiane Alvarenga traz situações reais para manejar situações na sua prática clínica.", thumb: "", link: "#tassi-obesidade-3", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "04", time: "Vídeo 1 - Endo Glass", title: "Semaglutida 1.0 mg no DM2: mecanismo de ação e aplicações clínicas", desc: "Roberto Zagury aborda Semaglutida 1.0 mg no DM2: mecanismo de ação e impacto no controle glicêmico e peso corporal.", thumb: "", link: "#endoglass-1", speakerName: "Roberto Zagury" },
+					{ ep: "05", time: "Vídeo 2 - EndoGlass", title: "Semaglutida 1.0: contraindicações, eventos adversos e benefícios cardiometabólico", desc: "Discussão sobre contraindicações, eventos adversos e benefícios glicêmicos e extraglicêmicos da semaglutida 1.0, com foco em impacto cardiovascular, renal e metabólico em DM2.", thumb: "", link: "#endoglass-2", speakerName: "Roberto Zagury" },
+					{ ep: "06", time: "Vídeo 3 - EndoGlass", title: "Semaglutida: comparação entre doses de 1 mg vs 2,4 mg na prática clínica", desc: "Comparação entre semaglutida 1 mg vs 2,4 mg: custo, eficácia clínica e estratégias práticas de uso no diabetes tipo 2 e obesidade.", thumb: "", link: "#endoglass-3", speakerName: "Roberto Zagury" },
+					{ ep: "07", time: "Aula 01", title: "Obesidade: muito além da balança", desc: "Obesidade como doença crônica multifatorial: a Dra. Tassiane Alvarenga aprofunda mecanismos e fundamentos essenciais para o manejo clínico baseado em evidências.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-1", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "08", time: "Aula 02", title: "Diretrizes em movimento: o que há de novo", desc: "Explore as novidades das diretrizes nacionais e internacionais e entenda as principais atualizações que estão transformando a prática atual.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-2", speakerName: "Dra. Tassiane Alvarenga" }
+				]
+			},
+			{
+				id: "rowDraPaula",
+				title: "Hands On de Liraglutida",
+				episodes: [
+					{ ep: "01", time: "Vídeo", title: "Comunicação no consultório", desc: "", thumb: "", link: "#paula-pires-comunicacao", speakerName: "Dra. Paula Pires" },
+					{ ep: "02", time: "Material impresso", title: "Ensinando como usar food noise", desc: "", thumb: "", link: "#food-noise-material" },
+					{ ep: "03", time: "Aula 05", title: "OLIRE em foco: o espaço da liraglutida", desc: "Entenda os diferenciais da liraglutida e seu papel estratégico no portfólio EMS, com foco nas aplicações e benefícios que destacam o OLIRE na prática clínica.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-5", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "04", time: "Aula 06", title: "Campo estratégico da liraglutida: INÍCIO da jornada da perda de peso", desc: "Veja como a liraglutida atua no início da jornada de perda de peso, com foco nos critérios de seleção e no perfil ideal de pacientes para melhores resultados.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-6", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "05", time: "Aula 07", title: "Campo estratégico da liraglutida: MANUTENÇÃO do peso perdido", desc: "Entenda como a liraglutida apoia a manutenção do peso perdido, com foco nos critérios de seleção e no perfil ideal de pacientes para sustentar resultados duradouros.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-7", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "06", time: "Aula 08", title: "Do corpo à mente: liraglutida e comportamento alimentar", desc: "Explore como a liraglutida influencia corpo e mente, atuando no comportamento alimentar, incluindo food noise, compulsão e comer noturno.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-8", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "07", time: "Aula 09", title: "Silenciando a compulsão: liraglutida em ação", desc: "Veja como a liraglutida ajuda a reduzir a compulsão alimentar, com evidências em transtorno da compulsão e insights de casos clínicos.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-9", speakerName: "Dra. Tassiane Alvarenga" }
+				]
+			},
+			{
+				id: "rowZagury",
+				title: "Hands On de Análogos de GLP-1",
+				episodes: [
+					{ ep: "01", time: "Conteúdo", title: "Obesidade infantil", desc: "", thumb: "", link: "#obesidade-infantil", speakerName: "Dra. Ludmilla" },
+					{ ep: "02", time: "Resumo", title: "Resumo de guideline de GLP-1", desc: "", thumb: "", link: "#guideline-glp1" },
+					{ ep: "03", time: "Aula 03", title: "Ferramentas de combate: do estilo de vida à farmacoterapia", desc: "Conheça o panorama das principais terapias, do estilo de vida à farmacoterapia, e entenda o papel dos a GLP‑1 no combate às doenças cardiometabólicas.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-3", speakerName: "Dra. Tassiane Alvarenga" },
+					{ ep: "04", time: "Aula 04", title: "GLP-1: a revolução da saciedade", desc: "Descubra como os agonistas GLP‑1 atuam na regulação da saciedade e os principais benefícios clínicos que impulsionam essa revolução terapêutica.", thumb: "capa-tassi-perda-de-peso.png", link: "#handson-4", speakerName: "Dra. Tassiane Alvarenga" }
+				]
+			}
+		]
+	}
 ];
 
 function renderCineMetabolica() {
-    const mainContainer = document.getElementById("cineDynamicBlocks");
-    if (!mainContainer) return;
+	const mainContainer = document.getElementById("cineDynamicBlocks");
+	if (!mainContainer) return;
 
-    mainContainer.innerHTML = cineBlocksData.map(block => `
-        <div class="cine-block-title" style="${block.blockNum === 'BLOCO 02' ? 'margin-top: 70px;' : ''}">
-            <h3>${block.blockTitle}</h3>
-        </div>
-
-        ${block.sections.map(sec => {
-            // Renderiza o HTML do Speaker caso a seção tenha médico cadastrado
-            const speakerHtml = sec.speaker ? `
-                <div class="speaker-avatar-wrapper">
-                    <div class="speaker-glow-aura"></div>
-                    <img class="speaker-cutout-img" src="${sec.speaker.avatar}" alt="${sec.speaker.name}">
-                    <div class="speaker-info-text">
-                        <span class="role">${sec.speaker.role}</span>
-                        <span class="name">${sec.speaker.name}</span>
-                    </div>
-                    <div class="speaker-lek-orbit">
-                        ${sec.speaker.bullets.map(b => `<div class="lek-bullet">${b}</div>`).join('')}
-                    </div>
-                </div>
-            ` : '';
-
-            // Renderiza os Cards dos Episódios com a Capa
-            const episodesHtml = sec.episodes.map(ep => `
-                <a class="cine-episode" href="${ep.link}">
-                    <div class="cine-episode-visual" data-ep="${ep.ep}">
-                        ${ep.thumb ? `<img class="ep-thumb" src="${ep.thumb}" alt="${ep.title}">` : ''}
-                        <div class="ep-glow"></div>
-                        <div class="cine-episode-play">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"></polygon></svg>
-                        </div>
-                    </div>
-                    <div class="cine-episode-meta">
-                        <span class="ep-time">${ep.time}</span>
-                        <h4>${ep.title}</h4>
-                        <p>${ep.desc}</p>
-                    </div>
-                </a>
-            `).join('');
-
-            return `
-                <div class="cine-section-header">
-                    <div class="cine-section-title">${sec.title}</div>
-                    ${speakerHtml}
-                </div>
-
-                <div class="cine-track-container">
-                    <button class="cine-arrow-nav cine-arrow-left" onclick="scrollCineTrack('${sec.id}', -320)" aria-label="Anterior">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </button>
-
-                    <div class="cine-track-netflix" id="${sec.id}">
-                        ${episodesHtml}
-                    </div>
-
-                    <button class="cine-arrow-nav cine-arrow-right" onclick="scrollCineTrack('${sec.id}', 320)" aria-label="Próximo">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </button>
-                </div>
-            `;
-        }).join('')}
-    `).join('');
-}
-
-// Rola a trilha lateralmente
-function scrollCineTrack(trackId, distance) {
-    const track = document.getElementById(trackId);
-    if (track) {
-        track.scrollBy({ left: distance, behavior: 'smooth' });
-    }
-}
-
-// Inicializa a renderização
-renderCineMetabolica();
-
-/* ═══════════════════════════════════════════
-3. ECOSSISTEMA EMS (AUTOPLAY DE 4s)
-═══════════════════════════════════════════ */
-const ecosystemItems = [
-	{
-		key: 'pesoInvisivel',
-		tag: 'Portal de Conscientização & Jornada',
-		title: 'O Peso Invisível',
-		desc: 'Um portal dedicado a desmistificar a neurobiologia da obesidade, o ruído mental do apetite e o estigma. Conteúdo educativo profundo para você compartilhar com seu paciente.',
-		url: 'opesoinvisivel.com.br',
-		highlights: [
-			'Compreensão da neurobiologia do peso e estigma',
-			'Materiais educativos de apoio para o consultório',
-			'Foco na jornada e bem-estar do paciente'
-		],
-		btnText: 'Explorar O Peso Invisível ↗',
-		btnLink: 'https://opesoinvisivel.com.br/',
-		mediaType: 'video',
-		mediaSrc: 'OPI_HUB_METABÓLICA_v2.mp4',
-		mediaBadge: 'Conscientização',
-		mediaTitle: 'O Peso Invisível',
-		mediaDesc: 'Ações centrais e biologia do controle crônico.'
-	},
-	{
-		key: 'vidaMaisLeve',
-		tag: 'Programa de Benefícios & Adesão EMS',
-		title: 'Portal Vida Mais Leve',
-		desc: 'O programa oficial da EMS para garantir que seu paciente tenha acesso financeiro facilitado ao tratamento com os análogos de GLP-1 (Ozivy, olire e Lirux).',
-		url: 'vidamaisleve.emssaude.com.br',
-		highlights: [
-			'Descontos exclusivos nas canetas para o paciente',
-			'Aumento comprovado na adesão ao tratamento crônico',
-			'Cadastro simples e rápido diretamente no portal'
-		],
-		btnText: 'Acessar Vida Mais Leve ↗',
-		btnLink: 'https://vidamaisleve.emssaude.com.br/',
-		mediaType: 'image',
-		mediaSrc: 'section-atualizada.webp',
-		mediaBadge: 'Programa de Benefícios',
-		mediaTitle: 'Vida Mais Leve',
-		mediaDesc: 'Tratamento acessível e suporte contínuo.'
-	},
-	{
-		key: 'calculadoraDM2',
-		tag: 'Ferramenta Médica • SBD & SBP',
-		title: 'Calculadora de Risco DM2',
-		desc: 'Ferramenta oficial com o patrocínio da EMS para estimar o risco de Diabetes Mellitus Tipo 2 em crianças e adolescentes durante a consulta.',
-		url: 'diabetes.org.br/risco-dm2',
-		highlights: [
-			'Patrocínio Oficial EMS em parceria com SBD e SBP',
-			'Triagem ágil de risco no público jovem',
-			'Suporte prático para a tomada de decisão médica'
-		],
-		btnText: 'Abrir Calculadora Oficial ↗',
-		btnLink: 'https://diabetes.org.br/risco-dm2/',
-		mediaType: 'video',
-		mediaSrc: 'sbd-calc-dm2.mp4',
-		mediaBadge: 'Patrocínio Oficial',
-		mediaTitle: 'Calculadora DM2',
-		mediaDesc: 'Triagem rápida para pediatria e hebiatria.'
-	}
-];
-
-let currentEcoIndex = 0;
-let ecoTimer = null;
-const AUTO_PLAY_TIME = 4000;
-
-function renderEcosystemIndex(index) {
-	currentEcoIndex = index;
-	const data = ecosystemItems[index];
-	if (!data) return;
-
-	const buttons = document.querySelectorAll('#ecoPillsNav .eco-pill-btn');
-	buttons.forEach((btn, idx) => {
-		btn.classList.toggle('is-active', idx === index);
-	});
-
-const infoPanel = document.getElementById('ecoInfoPanel');
-if (infoPanel) {
-	infoPanel.style.animation = 'none';
-	void infoPanel.offsetWidth;
-	infoPanel.style.animation = 'stageContentIn 0.4s ease-out both';
-
-	infoPanel.innerHTML = `
-	<span class="portal-tag">${data.tag}</span>
-	<h3>${data.title}</h3>
-	<p class="desc">${data.desc}</p>
-	<div class="eco-highlights">
-	${data.highlights.map(h => `
-		<div class="eco-chip-item">
-		<span class="check-icon">✓</span>
-		<span>${h}</span>
+	mainContainer.innerHTML = cineBlocksData.map(block => `
+		<div class="cine-block-title" style="${block.blockNum === 'BLOCO 02' ? 'margin-top: 70px;' : ''}">
+		<h3>${block.blockTitle}</h3>
 		</div>
-		`).join('')}
-		</div>
-		<a href="${data.btnLink}" target="_blank" rel="noopener" class="btn-eco-action">
-		${data.btnText}
-		</a>
-		`;
+
+		${block.sections.map(sec => {
+			// Renderiza o HTML do Speaker caso a seção tenha médico cadastrado
+			const speakerHtml = sec.speaker ? `
+			<div class="speaker-avatar-wrapper">
+			<div class="speaker-glow-aura"></div>
+			<img class="speaker-cutout-img" src="${sec.speaker.avatar}" alt="${sec.speaker.name}">
+			<div class="speaker-info-text">
+			<span class="role">${sec.speaker.role}</span>
+			<span class="name">${sec.speaker.name}</span>
+			</div>
+			<div class="speaker-lek-orbit">
+			${sec.speaker.bullets.map(b => `<div class="lek-bullet">${b}</div>`).join('')}
+			</div>
+			</div>
+			` : '';
+
+			// Renderiza os Cards dos Episódios com a Capa
+			const episodesHtml = sec.episodes.map(ep => `
+				<a class="cine-episode" href="${ep.link}">
+				<div class="cine-episode-visual" data-ep="${ep.ep}">
+				${ep.thumb ? `<img class="ep-thumb" src="${ep.thumb}" alt="${ep.title}">` : ''}
+				<div class="ep-glow"></div>
+				<div class="cine-episode-play">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"></polygon></svg>
+				</div>
+				</div>
+				<div class="cine-episode-meta">
+				${ep.time && !/^Aula\s*\d+/i.test(ep.time.trim()) ? `<span class="ep-time">${ep.time}</span>` : ''}
+				<h4>${ep.title}</h4>
+				<p>${ep.desc}</p>
+				${ep.speakerName ? `<span class="ep-speaker-name">${ep.speakerName}</span>` : ''}
+				</div>
+				</a>
+				`).join('');
+
+				return `
+				<div class="cine-section-header">
+				<div class="cine-section-title">${sec.title}</div>
+				${speakerHtml}
+				</div>
+
+				<div class="cine-track-container">
+				<button class="cine-arrow-nav cine-arrow-left" onclick="scrollCineTrack('${sec.id}', -320)" aria-label="Anterior">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+				</button>
+
+				<div class="cine-track-netflix" id="${sec.id}">
+				${episodesHtml}
+				</div>
+
+				<button class="cine-arrow-nav cine-arrow-right" onclick="scrollCineTrack('${sec.id}', 320)" aria-label="Próximo">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+				</button>
+				</div>
+				`;
+			}).join('')}
+		`).join('');
 	}
 
-	const deviceUrl = document.getElementById('deviceUrl');
-	if (deviceUrl) deviceUrl.textContent = data.url;
+	// Rola a trilha lateralmente
+	function scrollCineTrack(trackId, distance) {
+		const track = document.getElementById(trackId);
+		if (track) {
+			track.scrollBy({ left: distance, behavior: 'smooth' });
+		}
+	}
 
-	const mediaContainer = document.getElementById('mediaContainer');
-	if (mediaContainer) {
-		let mediaHtml = '';
-		if (data.mediaType === 'video') {
-			mediaHtml = `
-			<video class="eco-media-content" autoplay loop muted playsinline>
-			<source src="${data.mediaSrc}" type="video/mp4">
-			</video>`;
-		} else {
-			mediaHtml = `<img class="eco-media-content" src="${data.mediaSrc}" alt="${data.title}">`;
+	// Inicializa a renderização
+	renderCineMetabolica();
+
+	/* ═══════════════════════════════════════════
+	3. ECOSSISTEMA EMS (AUTOPLAY DE 4s)
+	═══════════════════════════════════════════ */
+	const ecosystemItems = [
+		{
+			key: 'pesoInvisivel',
+			tag: 'Portal de Conscientização & Jornada',
+			title: 'O Peso Invisível',
+			desc: 'Um portal que amplia o olhar sobre a obesidade, abordando desafios que vão além da balança. Conteúdos e materiais para apoiar a jornada do paciente dentro e fora do consultório.',
+			url: 'opesoinvisivel.com.br',
+			highlights: [
+				'Conscientização sobre obesidade',
+				'Mais acolhimento e menos julgamento',
+				'Apoio à jornada do paciente'
+			],
+			btnText: 'Explorar O Peso Invisível ↗',
+			btnLink: 'https://opesoinvisivel.com.br/',
+			mediaType: 'video',
+			mediaSrc: 'OPI_HUB_METABÓLICA_v2.mp4',
+			mediaBadge: 'Conscientização',
+			mediaTitle: 'O Peso Invisível',
+			mediaDesc: 'Ações centrais e biologia do controle crônico.'
+		},
+		{
+			key: 'vidaMaisLeve',
+			tag: 'Programa de Benefícios & Adesão EMS',
+			title: 'Portal Vida Mais Leve',
+			desc: 'Programa de benefícios e suporte da EMS desenvolvido para apoiar a jornada de pacientes com obesidade e diabetes tipo 2.',
+			url: 'vidamaisleve.emssaude.com.br',
+			highlights: [
+				'Benefícios exclusivos para o tratamento',
+				'Suporte contínuo ao paciente',
+				'Incentivo à adesão e ao cuidado diário'
+			],
+			btnText: 'Acessar Vida Mais Leve ↗',
+			btnLink: 'https://vidamaisleve.emssaude.com.br/',
+			mediaType: 'image',
+			mediaSrc: 'section-atualizada.webp',
+			mediaBadge: 'Programa de Benefícios',
+			mediaTitle: 'Vida Mais Leve',
+			mediaDesc: 'Tratamento acessível e suporte contínuo.'
+		},
+		{
+			key: 'calculadoraDM2',
+			tag: 'Ferramenta Médica • SBD & SBP',
+			title: 'Calculadora de Risco DM2',
+			desc: 'Ferramenta prática para auxiliar na identificação precoce do risco de DM2 nos pacientes.',
+			url: 'diabetes.org.br/risco-dm2',
+			highlights: [
+				'Patrocínio Oficial EMS em parceria com SBD e SBP',
+				'Identificação de pacientes em risco',
+				'Suporte prático para a tomada de decisão médica'
+			],
+			btnText: 'Abrir Calculadora Oficial ↗',
+			btnLink: 'https://diabetes.org.br/risco-dm2/',
+			mediaType: 'video',
+			mediaSrc: 'sbd-calc-dm2.mp4',
+			mediaBadge: 'Patrocínio Oficial',
+			mediaTitle: 'Calculadora DM2',
+			mediaDesc: 'Triagem rápida para pediatria e hebiatria.'
+		}
+	];
+
+	let currentEcoIndex = 0;
+	let ecoTimer = null;
+	const AUTO_PLAY_TIME = 4000;
+
+	function renderEcosystemIndex(index) {
+		currentEcoIndex = index;
+		const data = ecosystemItems[index];
+		if (!data) return;
+
+		const buttons = document.querySelectorAll('#ecoPillsNav .eco-pill-btn');
+		buttons.forEach((btn, idx) => {
+			btn.classList.toggle('is-active', idx === index);
+		});
+
+	const infoPanel = document.getElementById('ecoInfoPanel');
+	if (infoPanel) {
+		infoPanel.style.animation = 'none';
+		void infoPanel.offsetWidth;
+		infoPanel.style.animation = 'stageContentIn 0.4s ease-out both';
+
+		infoPanel.innerHTML = `
+		<span class="portal-tag">${data.tag}</span>
+		<h3>${data.title}</h3>
+		<p class="desc">${data.desc}</p>
+		<div class="eco-highlights">
+		${data.highlights.map(h => `
+			<div class="eco-chip-item">
+			<span class="check-icon">✓</span>
+			<span>${h}</span>
+			</div>
+			`).join('')}
+			</div>
+			<a href="${data.btnLink}" target="_blank" rel="noopener" class="btn-eco-action">
+			${data.btnText}
+			</a>
+			`;
 		}
 
-		mediaContainer.innerHTML = `
-		${mediaHtml}
-		<div class="eco-media-overlay">
-		<span class="media-badge">${data.mediaBadge}</span>
-		<h4>${data.mediaTitle}</h4>
-		<p>${data.mediaDesc}</p>
-		</div>
-		`;
-	}
-}
+		const deviceUrl = document.getElementById('deviceUrl');
+		if (deviceUrl) deviceUrl.textContent = data.url;
 
-function startEcoAutoPlay() {
-	stopEcoAutoPlay();
-	ecoTimer = setInterval(() => {
-		let nextIndex = (currentEcoIndex + 1) % ecosystemItems.length;
-		renderEcosystemIndex(nextIndex);
-	}, AUTO_PLAY_TIME);
+		const mediaContainer = document.getElementById('mediaContainer');
+		if (mediaContainer) {
+			let mediaHtml = '';
+			if (data.mediaType === 'video') {
+				mediaHtml = `
+				<video class="eco-media-content" autoplay loop muted playsinline>
+				<source src="${data.mediaSrc}" type="video/mp4">
+				</video>`;
+			} else {
+				mediaHtml = `<img class="eco-media-content" src="${data.mediaSrc}" alt="${data.title}">`;
+			}
+
+			mediaContainer.innerHTML = `
+			${mediaHtml}
+			<div class="eco-media-overlay">
+			<span class="media-badge">${data.mediaBadge}</span>
+			<h4>${data.mediaTitle}</h4>
+			<p>${data.mediaDesc}</p>
+			</div>
+			`;
+		}
+	}
+
+	function startEcoAutoPlay() {
+		stopEcoAutoPlay();
+		ecoTimer = setInterval(() => {
+			let nextIndex = (currentEcoIndex + 1) % ecosystemItems.length;
+			renderEcosystemIndex(nextIndex);
+		}, AUTO_PLAY_TIME);
 }
 
 function stopEcoAutoPlay() {
@@ -2647,247 +3929,150 @@ renderEcosystemIndex(0);
 startEcoAutoPlay();
 
 /* ═══════════════════════════════════════════
-   4. MÓDULO DE EVENTOS & AGENDA EMS
+4. MÓDULO DE EVENTOS & AGENDA EMS
 ═══════════════════════════════════════════ */
 
 // A) PRÓXIMOS CONGRESSOS (BANERS EM DESTAQUE - LIMPOS E IMPACTANTES)
 /* ═══════════════════════════════════════════
-   4. CALENDÁRIO DE EVENTOS EMS (INVERSÃO DE LAYOUTS)
+4. CALENDÁRIO DE EVENTOS EMS (INVERSÃO DE LAYOUTS)
 ═══════════════════════════════════════════ */
 /* ═══════════════════════════════════════════
-   4. CALENDÁRIO DE EVENTOS EMS (LAYOUT PADRÃO UNIFICADO)
+4. CALENDÁRIO DE EVENTOS EMS (LAYOUT PADRÃO UNIFICADO)
 ═══════════════════════════════════════════ */
 /* ═══════════════════════════════════════════
-   4. CALENDÁRIO DE EVENTOS EMS (PADRONIZADO)
+4. CALENDÁRIO DE EVENTOS EMS (PADRONIZADO)
 ═══════════════════════════════════════════ */
 /* ═══════════════════════════════════════════
-   4. CALENDÁRIO DE EVENTOS EMS (BANNERS PRÓXIMOS 100% LIMPOS E NÍTIDOS)
+4. CALENDÁRIO DE EVENTOS EMS (BANNERS PRÓXIMOS 100% LIMPOS E NÍTIDOS)
 ═══════════════════════════════════════════ */
 const calendarData = [
-    {
-        id: 1,
-        monthKey: 'maio',
-        type: 'internacional',
-        typeBadge: 'Congresso Internacional • Passado',
-        dayNum: '12-15',
-        monthName: 'MAIO / 2026',
-        title: 'ECO 2026 — European Congress on Obesity',
-        desc: 'Destaques e análise das novas diretrizes europeias pelo olhar da Dra. Tassiane Alvarenga.',
-        location: '📍 Istambul, Turquia',
-        bannerImg: 'https://eco2026.org/assets/img/inner-header.jpg',
-        btnText: 'Ver Highlights →',
-        btnLink: '#artigo-eco2026',
-        isFuture: false // Evento passado (Com texto, descrição e botão)
-    },
-    {
-        id: 2,
-        monthKey: 'maio',
-        type: 'proprietario',
-        typeBadge: 'Evento Proprietário EMS • Passado',
-        dayNum: '28',
-        monthName: 'MAIO / 2026',
-        title: 'O Peso Invisível — Imersão Científica',
-        desc: 'Imersão focada na neurobiologia do peso e conduta de consultório com a galeria de fotos e resumos.',
-        location: '📍 São Paulo, SP',
-        bannerImg: 'image 17.png',
-        btnText: 'Veja como foi →',
-        btnLink: 'https://opesoinvisivel.com.br/',
-        isFuture: false // Evento passado
-    },
-    {
-        id: 3,
-        monthKey: 'junho',
-        type: 'internacional',
-        typeBadge: '• PRÓXIMO CONGRESSO',
-        dayNum: '26-29',
-        monthName: 'JUNHO / 2026',
-        bannerImg: 'Banner_SBEM_CBEM_700x455.png',
-        isFuture: true // PRÓXIMO EVENTO: Sem escurecimento na foto, sem título e sem textos
-    },
-    {
-        id: 4,
-        monthKey: 'setembro',
-        type: 'internacional',
-        typeBadge: '• PRÓXIMO EVENTO EMS',
-        dayNum: '28-02',
-        monthName: 'SET / 2026',
-        bannerImg: 'https://www.easd.org/uploads/pce_966.jpg?c=cbbea302a4a432abb5164a754851c878',
-        isFuture: true // PRÓXIMO EVENTO: Banner limpo e nítido
-    },
 	{
-        id: 5,
-        monthKey: 'setembro',
-        type: 'proprietario',
-        typeBadge: '• PRÓXIMO EVENTO EMS',
-        dayNum: '28-31',
-        monthName: 'SET / 2026',
-        bannerImg: 'flaso2.png',
-        isFuture: true // PRÓXIMO EVENTO: Banner limpo e nítido
-    }
+		id: 1,
+		monthKey: 'maio',
+		type: 'internacional',
+		typeBadge: 'Congresso Internacional • Passado',
+		dayNum: '12-15',
+		monthName: 'MAIO / 2026',
+		title: 'ECO 2026 — European Congress on Obesity',
+		desc: 'Destaques e análise das novas diretrizes europeias pelo olhar da Dra. Tassiane Alvarenga.',
+		location: '📍 Istambul, Turquia',
+		bannerImg: 'https://eco2026.org/assets/img/inner-header.jpg',
+		btnText: 'Ver Highlights →',
+		btnLink: '#artigo-eco2026',
+		isFuture: false // Evento passado (Com texto, descrição e botão)
+	},
+	{
+		id: 2,
+		monthKey: 'maio',
+		type: 'proprietario',
+		typeBadge: 'Evento Proprietário EMS • Passado',
+		dayNum: '28',
+		monthName: 'MAIO / 2026',
+		title: 'O Peso Invisível — Imersão Científica',
+		desc: 'Imersão focada na neurobiologia do peso e conduta de consultório com a galeria de fotos e resumos.',
+		location: '📍 São Paulo, SP',
+		bannerImg: 'OPI_HUB_METABÓLICA.mp4',
+		btnText: 'Veja como foi →',
+		btnLink: 'https://opesoinvisivel.com.br/',
+		isFuture: false // Evento passado
+	},
+	{
+		id: 3,
+		monthKey: 'junho',
+		type: 'internacional',
+		typeBadge: '• PRÓXIMO CONGRESSO',
+		dayNum: '26-29',
+		monthName: 'JUNHO / 2026',
+		bannerImg: 'Banner_SBEM_CBEM_700x455.png',
+		isFuture: true // PRÓXIMO EVENTO: Sem escurecimento na foto, sem título e sem textos
+	},
+	{
+		id: 4,
+		monthKey: 'setembro',
+		type: 'internacional',
+		typeBadge: '• PRÓXIMO EVENTO EMS',
+		dayNum: '28-02',
+		monthName: 'SET / 2026',
+		bannerImg: 'https://www.easd.org/uploads/pce_966.jpg?c=cbbea302a4a432abb5164a754851c878',
+		isFuture: true // PRÓXIMO EVENTO: Banner limpo e nítido
+	},
+	{
+		id: 5,
+		monthKey: 'setembro',
+		type: 'proprietario',
+		typeBadge: '• PRÓXIMO EVENTO EMS',
+		dayNum: '28-31',
+		monthName: 'SET / 2026',
+		bannerImg: 'flaso2.png',
+		isFuture: true // PRÓXIMO EVENTO: Banner limpo e nítido
+	}
 ];
 
 let activeMonthFilter = 'todos';
 let activeTypeFilter = 'todos';
 
 function renderCalendar() {
-    const listContainer = document.getElementById('calEventsList');
-    if (!listContainer) return;
+	const listContainer = document.getElementById('calEventsList');
+	if (!listContainer) return;
 
-    listContainer.innerHTML = '';
+	const filtered = calendarData.filter(item => {
+		const matchMonth = (activeMonthFilter === 'todos' || item.monthKey === activeMonthFilter);
+		const matchType = (activeTypeFilter === 'todos' || item.type === activeTypeFilter);
+		return matchMonth && matchType;
+	});
 
-    const filtered = calendarData.filter(item => {
-        const matchMonth = (activeMonthFilter === 'todos' || item.monthKey === activeMonthFilter);
-        const matchType = (activeTypeFilter === 'todos' || item.type === activeTypeFilter);
-        return matchMonth && matchType;
-    });
+	if (filtered.length === 0) {
+		listContainer.innerHTML = `
+			<div class="cal-empty-state">Nenhum evento encontrado para esse filtro.</div>
+		`;
+		return;
+	}
 
-    if (filtered.length === 0) {
-        listContainer.innerHTML = `
-            <div style="text-align:center; padding: 40px; color: #94a3b8; font-size: 14px;">
-                Nenhum evento encontrado para esse filtro.
-            </div>`;
-        return;
-    }
+	listContainer.innerHTML = filtered.map(item => {
+		const badgeText = item.isFuture ? 'Em breve' : item.typeBadge;
+		const titleHtml = item.title ? `<h3>${item.title}</h3>` : (item.isFuture ? `<h3>Em breve</h3>` : '');
+		const descHtml = item.desc ? `<p>${item.desc}</p>` : '';
+		const locationHtml = item.location ? `<span class="cal-event-location">${item.location}</span>` : '';
+		const actionHtml = (item.btnLink && item.btnText)
+			? `<a class="cal-event-action" href="${item.btnLink}">${item.btnText}</a>`
+			: '';
 
-    filtered.forEach(item => {
-        const row = document.createElement('div');
-        row.className = 'cal-event-banner-card';
+		return `
+			<article class="cal-event-card ${item.isFuture ? 'is-future' : 'is-past'}">
+				<div class="cal-event-media">
+					<img src="${item.bannerImg}" alt="${item.title || badgeText || 'Evento EMS'}">
+				</div>
 
-        // LÓGICA 1: PRÓXIMOS EVENTOS (IMAGEM 100% BRILHANTE / SEM OVERLAY ESCURO / SEM TÍTULO)
-        if (item.isFuture) {
-            row.style.cssText = `
-                position: relative;
-                border-radius: 20px;
-                margin-bottom: 20px;
-                overflow: hidden;
-                border: 1px solid rgba(32, 255, 255, 0.4);
-                box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-                cursor: pointer;
-                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-            `;
+				<div class="cal-event-content">
+					<div class="cal-event-meta-row">
+						<div class="cal-event-date-chip">
+							<strong>${item.dayNum}</strong>
+							<span>${item.monthName}</span>
+						</div>
+						<span class="cal-event-type">${badgeText}</span>
+					</div>
 
-            row.innerHTML = `
-                <div style="position: relative;padding: 53px 36px;min-height: 150px;display: flex;grid-template-columns: 130px 1fr;gap: 28px;align-items: flex-start;z-index: 5;flex-direction: column;;">
-                    
-                    <!-- IMAGEM DE FUNDO DO BANNER (100% NÍTIDA E SEM FILTRO ESCURO) -->
-                    <div class="banner-bg-media" style="position: absolute; inset: 0; z-index: 1; overflow: hidden;">
-                        <img src="${item.bannerImg}" alt="Próximo Evento" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);">
-                    </div>
-
-                    <!-- FEIXE DE LUZ CIANO (SHINE EFFECT NO HOVER) -->
-                    <div class="banner-shine-light" style="position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(32, 255, 255, 0.35), transparent); transform: skewX(-25deg); z-index: 2; pointer-events: none; transition: left 0.75s ease;"></div>
-
-                    <!-- Coluna 1: Data Iluminada -->
-                    <div style="position: relative; z-index: 6; background: rgba(2, 6, 23, 0.82); border: 1px solid rgba(32, 255, 255, 0.6); backdrop-filter: blur(12px); border-radius: 14px; padding: 14px; text-align: center;">
-                        <span style="color: #20FFFF; font-size: 26px; font-weight: 900; display: block; line-height: 1;">${item.dayNum}</span>
-                        <span style="color: #ffffff; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block;">${item.monthName}</span>
-                    </div>
-
-                    <!-- Coluna 2: Apenas Tag Azul Flutuante (Sem Título ou Texto) -->
-                    <div class="cal-details-block" style="position: relative; z-index: 6;">
-                        <span style="background: #20FFFF; color: #2D3766; font-weight: 900; padding: 4px 14px; border-radius: 50px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; display: inline-block; margin-bottom: 8px; box-shadow: 0 0 15px rgba(32, 255, 255, 0.4);">
-                            ${item.typeBadge}
-                        </span>
-                    </div>
-
-                </div>
-            `;
-        } 
-        
-        // LÓGICA 2: EVENTOS PASSADOS (MANTÉM CONTEÚDO E BOTÃO)
-        else {
-            row.style.cssText = `
-                position: relative;
-                border-radius: 20px;
-                margin-bottom: 20px;
-                overflow: hidden;
-                border: 1px solid rgba(32, 255, 255, 0.35);
-                box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-                cursor: pointer;
-                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-            `;
-
-            row.innerHTML = `
-                <div style="position: relative; padding: 32px 36px; min-height: 160px; display: grid; grid-template-columns: 130px 1fr 220px; gap: 28px; align-items: center; z-index: 5;">
-                    
-                    <!-- IMAGEM COM OVERLAY ESCURO PARA LEITURA DE TEXTO -->
-                    <div class="banner-bg-media" style="position: absolute; inset: 0; z-index: 1; overflow: hidden;">
-                        <img src="${item.bannerImg}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); filter: brightness(0.55) contrast(1.1);">
-                        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, #020617 0%, rgba(45, 55, 102, 0.85) 50%, rgba(2, 6, 23, 0.75) 100%); mix-blend-mode: multiply;"></div>
-                        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 23, 0.9) 100%);"></div>
-                    </div>
-
-                    <!-- FEIXE DE LUZ -->
-                    <div class="banner-shine-light" style="position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(32, 255, 255, 0.3), transparent); transform: skewX(-25deg); z-index: 2; pointer-events: none; transition: left 0.75s ease;"></div>
-
-                    <!-- Coluna 1: Data -->
-                    <div style="position: relative; z-index: 6; background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(32, 255, 255, 0.5); backdrop-filter: blur(12px); border-radius: 14px; padding: 14px; text-align: center;">
-                        <span style="color: #20FFFF; font-size: 26px; font-weight: 900; display: block; line-height: 1;">${item.dayNum}</span>
-                        <span style="color: #ffffff; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; display: block;">${item.monthName}</span>
-                    </div>
-
-                    <!-- Coluna 2: Informações -->
-                    <div class="cal-details-block" style="position: relative; z-index: 6;">
-                        <span style="background: #20FFFF; color: #2D3766; font-weight: 900; padding: 4px 14px; border-radius: 50px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; display: inline-block; margin-bottom: 8px; box-shadow: 0 0 15px rgba(32, 255, 255, 0.4);">
-                            ${item.typeBadge}
-                        </span>
-                        <h3 style="color: #ffffff; font-size: 21px; font-weight: 900; margin-bottom: 6px; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">${item.title}</h3>
-                        <p style="color: #e2e8f0; font-size: 13px; margin-bottom: 6px; line-height: 1.5; max-width: 580px;">${item.desc}</p>
-                        <span style="color: #20FFFF; font-weight: 800; font-size: 12px; display: block;">${item.location}</span>
-                    </div>
-
-                    <!-- Coluna 3: Botão -->
-                    <div style="position: relative; z-index: 6; text-align: right;">
-                        <a href="${item.btnLink}" style="background: linear-gradient(90deg, #258091 0%, #20FFFF 100%); color: #2D3766; padding: 12px 22px; border-radius: 50px; font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; display: inline-block; box-shadow: 0 0 20px rgba(32, 255, 255, 0.35); transition: all 0.3s ease;">
-                            ${item.btnText}
-                        </a>
-                    </div>
-
-                </div>
-            `;
-        }
-
-        // Animação de Hover (Zoom na Foto + Feixe de Luz)
-        row.addEventListener('mouseenter', () => {
-            row.style.transform = 'translateY(-6px) scale(1.01)';
-            row.style.borderColor = '#20FFFF';
-            row.style.boxShadow = '0 20px 45px rgba(32, 255, 255, 0.35)';
-
-            const img = row.querySelector('.banner-bg-media img');
-            if (img) img.style.transform = 'scale(1.08)';
-
-            const shine = row.querySelector('.banner-shine-light');
-            if (shine) shine.style.left = '150%';
-        });
-
-        row.addEventListener('mouseleave', () => {
-            row.style.transform = 'translateY(0) scale(1)';
-            row.style.borderColor = 'rgba(32, 255, 255, 0.4)';
-            row.style.boxShadow = '0 12px 30px rgba(0,0,0,0.35)';
-
-            const img = row.querySelector('.banner-bg-media img');
-            if (img) img.style.transform = 'scale(1)';
-
-            const shine = row.querySelector('.banner-shine-light');
-            if (shine) shine.style.left = '-100%';
-        });
-
-        listContainer.appendChild(row);
-    });
+					${titleHtml}
+					${descHtml}
+					${locationHtml}
+					${actionHtml}
+				</div>
+			</article>
+		`;
+	}).join('');
 }
-
 function filterByMonth(month, btn) {
-    activeMonthFilter = month;
-    document.querySelectorAll('#monthSelector .month-btn').forEach(b => b.classList.remove('is-active'));
-    if (btn) btn.classList.add('is-active');
-    renderCalendar();
+	activeMonthFilter = month;
+	document.querySelectorAll('#monthSelector .month-btn').forEach(b => b.classList.remove('is-active'));
+	if (btn) btn.classList.add('is-active');
+	renderCalendar();
 }
 
 function filterByType(type, btn) {
-    activeTypeFilter = type;
-    document.querySelectorAll('.cal-type-filter .type-btn').forEach(b => b.classList.remove('is-active'));
-    if (btn) btn.classList.add('is-active');
-    renderCalendar();
+	activeTypeFilter = type;
+	document.querySelectorAll('.cal-type-filter .type-btn').forEach(b => b.classList.remove('is-active'));
+	if (btn) btn.classList.add('is-active');
+	renderCalendar();
 }
 
 // Inicializa a renderização
